@@ -1,0 +1,52 @@
+{
+  "title": "Привет мир!",
+  "language": {
+    "en": "Англ",
+    "ru": "Рус"
+  },
+  "theme": {
+    "light": "Светлая",
+    "dark": "Тёмная"
+  },
+  "validation": {
+    "email": {
+      "required": "Почта обязательна",
+      "format": "Неправильная почта, пример 'user@gmail.com'",
+      "length": "Длина почты должна быть меньше 50"
+    },
+    "name": {
+      "required": "Имя обязательно",
+      "length": "Длина имени должна быть меньше 100"
+    },
+    "password": {
+      "required": "Пароль обязателен"
+    },
+    "confirm-password": {
+      "required": "Подтверждение пароля обязательно",
+      "format": "Пароль и подтверждение пароля должны совпадать"
+    }
+  },
+  "exception": {
+    "USER_EMAIL_EXISTS": "Почта уже существует",
+    "USER_CREDENTIAL_INVALID": "Неверные почта или пароль",
+    "USER_IS_LOCK": "Ваш аккаунт заблокирован"
+  },
+  "navbar": {
+    "login-page-button": "Вход",
+    "sign-up-page-button": "Регистрация"
+  },
+  "login-form": {
+    "header": "Вход",
+    "email": "Почта",
+    "password": "Пароль",
+    "submit-button": "Войти"
+  },
+  "sign-up-form": {
+    "header": "Регистрация",
+    "email": "Почта",
+    "name": "Имя",
+    "password": "Пароль",
+    "confirm-password": "Подтверждение пароля",
+    "submit-button": "Зарегистрироваться"
+  }
+}

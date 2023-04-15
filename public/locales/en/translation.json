@@ -1,0 +1,52 @@
+{
+  "title": "Hello world!",
+  "language": {
+    "en": "En",
+    "ru": "Ru"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "validation": {
+    "email": {
+      "required": "Email is required",
+      "format": "Invalid email address, e.g. 'user@gmail.com'",
+      "length": "Email length must be less than 50"
+    },
+    "name": {
+      "required": "Name is required",
+      "length": "Name length must be less than 100"
+    },
+    "password": {
+      "required": "Password is required"
+    },
+    "confirm-password": {
+      "required": "Confirm password is required",
+      "format": "Password and confirm password should match"
+    }
+  },
+  "exception": {
+    "USER_EMAIL_EXISTS": "Email already exists",
+    "USER_CREDENTIAL_INVALID": "Email or password is incorrect",
+    "USER_IS_LOCK": "Your account is lock"
+  },
+  "navbar": {
+    "login-page-button": "Login",
+    "sign-up-page-button": "Sign up"
+  },
+  "login-form": {
+    "header": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit-button": "Login"
+  },
+  "sign-up-form": {
+    "header": "Sign up",
+    "email": "Email",
+    "name": "Name",
+    "password": "Password",
+    "confirm-password": "Confirm password",
+    "submit-button": "Sign up"
+  }
+}
