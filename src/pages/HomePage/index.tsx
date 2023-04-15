@@ -17,7 +17,7 @@ export default function HomePage() {
       <Button label="dark" onClick={() => changeTheme(Theme.DARK)} />
       <Link to={PagePath.LOGIN}>Login</Link>
       <Link to={PagePath.SIGN_UP}>Sign up</Link>
-      <Link to={PagePath.USER}>User page</Link>
+      <Link to={PagePath.PROFILE}>User page</Link>
       <Link to={PagePath.ADMIN}>Admin page</Link>
     </div>
   );
