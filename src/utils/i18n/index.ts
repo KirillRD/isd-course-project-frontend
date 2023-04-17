@@ -9,9 +9,6 @@ const i18n = use(I18NextHttpBackend)
   .init({
     fallbackLng: 'en',
     load: 'languageOnly',
-    interpolation: {
-      escapeValue: false,
-    },
   });
 
 export default i18n;

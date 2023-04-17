@@ -1,4 +1,4 @@
-import { Exception, Role } from '@/structures/enums';
+import { CreationCategory, Exception, Role } from '@/structures/enums';
 
 export type ErrorResponse = {
   data: {
@@ -28,7 +28,27 @@ export type User = {
   id: number;
   email: string;
   name: string;
-  signupDate: Date;
+  signUpDate: Date;
   isLock: boolean;
   roles: Role[];
+  reviews?: Review[];
+};
+
+export type Creation = {
+  id: number;
+  title: string;
+  category: CreationCategory;
+  reviews?: Review[];
+};
+
+export type Review = {
+  id: number;
+  user?: User;
+  userId: number;
+  creation?: Creation;
+  creationId: number;
+  title: string;
+  body: string;
+  grade: number;
+  createDate: Date;
 };

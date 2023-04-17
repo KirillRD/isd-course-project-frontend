@@ -26,11 +26,29 @@ export enum ApiEndpoint {
   PROFILE = 'auth/profile',
   CSRF_TOKEN = 'auth/csrf-token',
   REFRESH_TOKENS = 'auth/refresh-token/refresh-tokens',
+
+  USERS = 'users/',
 }
 
 export enum Role {
   USER = 'USER',
   ADMIN = 'ADMIN',
+}
+
+export enum CreationCategory {
+  MOVIES = 'MOVIES',
+  TV = 'TV',
+  BOOKS = 'BOOKS',
+  MUSIC = 'MUSIC',
+  GAMES = 'GAMES',
+}
+
+export enum CreationCategoryColor {
+  MOVIES = 'bg-blue-300',
+  TV = 'bg-yellow-300',
+  BOOKS = 'bg-green-300',
+  MUSIC = 'bg-purple-300',
+  GAMES = 'bg-red-300',
 }
 
 export enum Exception {

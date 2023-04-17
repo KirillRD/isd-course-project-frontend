@@ -7,7 +7,7 @@ import { RefObject, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function useSignUp(errorMessage: RefObject<Messages>) {
-  const [t, i18n] = useTranslation('translation', { keyPrefix: 'exception' });
+  const { t, i18n } = useTranslation('translation', { keyPrefix: 'exception' });
   const [signUpMutation, { isSuccess, data, isError, error }] =
     useSignUpMutation();
   const dispatch = useAppDispatch();

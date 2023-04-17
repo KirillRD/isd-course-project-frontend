@@ -10,11 +10,13 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import LoginPage from '@/pages/LoginPage';
 import SignUpPage from '@/pages/SignUpPage';
 import Auth from '@/components/Auth';
-import UserPage from '@/pages/UserPage';
+import ProfilePage from '@/pages/ProfilePage';
 import AdminPage from '@/pages/AdminPage';
 import useAuthUser from '@/hooks/useAuthUser';
+import useLocale from '@/hooks/useLocale';
 
 export default function App() {
+  useLocale();
   useAuthUser();
 
   return (
@@ -30,7 +32,7 @@ export default function App() {
           </Route>
 
           <Route element={<Auth allowedRoles={[Role.USER, Role.ADMIN]} />}>
-            <Route path={PagePath.PROFILE} element={<UserPage />} />
+            <Route path={PagePath.PROFILE} element={<ProfilePage />} />
           </Route>
 
           <Route element={<Auth allowedRoles={[Role.ADMIN]} />}>

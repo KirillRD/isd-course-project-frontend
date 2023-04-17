@@ -7,7 +7,7 @@ import { RefObject, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function useLogin(errorMessage: RefObject<Messages>) {
-  const [t, i18n] = useTranslation('translation', { keyPrefix: 'exception' });
+  const { t, i18n } = useTranslation('translation', { keyPrefix: 'exception' });
   const [loginMutation, { isSuccess, data, isError, error }] =
     useLoginMutation();
   const dispatch = useAppDispatch();

@@ -13,9 +13,9 @@ export default function Navbar() {
   return (
     <nav className="h-4rem w-full surface-card border-bottom-1 surface-border">
       <div className="h-full w-full flex justify-content-center align-items-center">
-        <div className="col-11 flex align-items-center">
+        <div className="col-11 flex justify-content-between align-items-center">
           <div className="flex gap-3"></div>
-          <div className="flex flex-grow-1 gap-3 justify-content-end">
+          <div className="flex gap-3">
             <ThemeDropdown className="w-4rem" />
             <LanguageDropdown className="w-5rem" />
             {authUser ? (

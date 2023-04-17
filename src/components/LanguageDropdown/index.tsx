@@ -8,7 +8,7 @@ type LanguageDropdownProps = {
 };
 
 export default function LanguageDropdown({ className }: LanguageDropdownProps) {
-  const [t, i18n] = useTranslation('translation', { keyPrefix: 'language' });
+  const { t, i18n } = useTranslation('translation', { keyPrefix: 'language' });
   const languages: SelectItem[] = Object.values(Language).map((language) => ({
     label: t(language)!,
     value: language,

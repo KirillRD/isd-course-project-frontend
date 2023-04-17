@@ -1,0 +1,33 @@
+.reviewCheckbox {
+  min-width: 1%;
+}
+
+.creationImage {
+  min-width: 9%;
+}
+
+.creationImage img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+
+.reviewTitle {
+  min-width: 35%;
+}
+
+.creationTitle {
+  min-width: 35%;
+}
+
+.creationCategoryTitle {
+  min-width: 5%;
+}
+
+.reviewCreateDate {
+  min-width: 10%;
+}
+
+.reviewGrade {
+  min-width: 5%;
+}

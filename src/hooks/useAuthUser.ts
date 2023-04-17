@@ -16,7 +16,6 @@ export default function useAuthUser() {
       if (accessToken) {
         const res = await getProfile();
         if (res.isSuccess) {
-          console.log(res.data);
           dispatch(setAuthUser(res.data));
         }
       } else if (authUser) {
@@ -25,6 +24,4 @@ export default function useAuthUser() {
     };
     void load();
   }, [accessToken, location]);
-
-  return;
 }

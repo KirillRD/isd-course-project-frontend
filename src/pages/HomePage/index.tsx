@@ -5,7 +5,7 @@ import { PagePath, Theme } from '@/structures/enums';
 import { Link } from 'react-router-dom';
 
 export default function HomePage() {
-  const [t, i18n] = useTranslation();
+  const { t, i18n } = useTranslation();
   const { changeTheme } = useTheme();
 
   return (
