@@ -32,6 +32,9 @@ export type User = {
   isLock: boolean;
   roles: Role[];
   reviews?: Review[];
+  _count?: {
+    reviews?: number;
+  };
 };
 
 export type Creation = {

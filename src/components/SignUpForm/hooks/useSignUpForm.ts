@@ -6,22 +6,22 @@ import { Messages } from 'primereact/messages';
 import { useTranslation } from 'react-i18next';
 import { ObjectSchema, object, ref, string } from 'yup';
 
+const signUpValidationSchema: ObjectSchema<SignUpData> = object({
+  email: string()
+    .email('email.format')
+    .required('email.required')
+    .max(50, 'email.length'),
+  name: string().required('name.required').max(100, 'name.length'),
+  password: string().required('password.required'),
+  confirmPassword: string()
+    .required('confirm-password.required')
+    .oneOf([ref('password')], 'confirm-password.format'),
+});
+
 export default function useSignUpForm() {
   const [t] = useTranslation('translation', { keyPrefix: 'validation' });
   const errorMessage = useRef<Messages>(null);
   const { signUp } = useSignUp(errorMessage);
-
-  const signUpValidationSchema: ObjectSchema<SignUpData> = object({
-    email: string()
-      .email('email.format')
-      .required('email.required')
-      .max(50, 'email.length'),
-    name: string().required('name.required').max(100, 'name.length'),
-    password: string().required('password.required'),
-    confirmPassword: string()
-      .required('confirm-password.required')
-      .oneOf([ref('password')], 'confirm-password.format'),
-  });
 
   const formik = useFormik<SignUpData>({
     initialValues: {

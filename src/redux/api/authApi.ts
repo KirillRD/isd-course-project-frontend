@@ -40,10 +40,11 @@ const authApi = api.injectEndpoints({
         method: HTTPMethod.POST,
       }),
     }),
-    profile: builder.query<User, void>({
+    getProfile: builder.query<User, void>({
       query: () => ({
         url: ApiEndpoint.PROFILE,
       }),
+      providesTags: ['AuthUser'],
     }),
   }),
 });
@@ -52,5 +53,5 @@ export const {
   useSignUpMutation,
   useLoginMutation,
   useLogoutMutation,
-  useLazyProfileQuery,
+  useGetProfileQuery,
 } = authApi;

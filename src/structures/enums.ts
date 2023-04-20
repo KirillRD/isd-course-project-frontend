@@ -16,6 +16,7 @@ export enum PagePath {
   PROFILE = '/profile',
   ADMIN = '/admin',
   ACCESS_DENIED = '/access-denied',
+  USERS = '/users',
   ANY = '*',
 }
 
@@ -27,12 +28,17 @@ export enum ApiEndpoint {
   CSRF_TOKEN = 'auth/csrf-token',
   REFRESH_TOKENS = 'auth/refresh-token/refresh-tokens',
 
-  USERS = 'users/',
+  USERS = 'users',
 }
 
 export enum Role {
   USER = 'USER',
   ADMIN = 'ADMIN',
+}
+
+export enum RoleColor {
+  USER = 'bg-gray-300',
+  ADMIN = 'bg-red-300',
 }
 
 export enum CreationCategory {

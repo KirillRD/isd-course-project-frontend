@@ -24,6 +24,9 @@
     "confirm-password": {
       "required": "Подтверждение пароля обязательно",
       "format": "Пароль и подтверждение пароля должны совпадать"
+    },
+    "roles": {
+      "length": "Пользователь должен содержать хотя бы одну роль"
     }
   },
   "exception": {
@@ -31,9 +34,14 @@
     "USER_CREDENTIAL_INVALID": "Неверные почта или пароль",
     "USER_IS_LOCK": "Ваш аккаунт заблокирован"
   },
+  "role": {
+    "USER": "ПОЛЬЗ.",
+    "ADMIN": "АДМИН"
+  },
   "navbar": {
-    "login-page-button": "Вход",
-    "sign-up-page-button": "Регистрация"
+    "login-page": "Вход",
+    "sign-up-page": "Регистрация",
+    "users-page": "Пользователи"
   },
   "login-form": {
     "header": "Вход",
@@ -48,6 +56,43 @@
     "password": "Пароль",
     "confirm-password": "Подтверждение пароля",
     "submit-button": "Зарегистрироваться"
+  },
+  "user": {
+    "delete-dialog": {
+      "header": "Удаление пользователя",
+      "message": "Вы уверены, что хотите удалить этого пользователя?"
+    },
+    "edit-dialog": {
+      "header": "Редактирование пользователя",
+      "form": {
+        "lock": "Разблокирован/Заблокирован",
+        "roles": "Роли",
+        "confirm-button": "Сохранить",
+        "cancel-button": "Отменить"
+      }
+    },
+    "table": {
+      "title": "Пользователи",
+      "header": {
+        "change-roles-button": "Изменить роли",
+        "change-roles-title": "Изменение ролей пользователя",
+        "unlock-button": "Разблокировать",
+        "unlock-title": "Разблокировка пользователей",
+        "lock-button": "Заблокировать",
+        "lock-title": "Блокировка пользователей",
+        "delete-button": "Удалить",
+        "delete-title": "Удаление пользователей",
+        "search-input": "Поиск"
+      }
+    },
+    "user-image": "Изобр.",
+    "user-email": "Почта",
+    "user-name": "Имя",
+    "user-review-count": "Кол-во обзоров",
+    "user-like-count": "Кол-во лайков",
+    "user-sign-up-date": "Дата регистрации",
+    "user-is-lock": "Блок.",
+    "user-roles": "Роли"
   },
   "review": {
     "creation-category": {

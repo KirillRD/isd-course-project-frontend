@@ -85,6 +85,7 @@ const baseQueryWithReAuth: ApiBaseQueryType = async (
 const api = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReAuth,
+  tagTypes: ['AuthUser', 'Users', 'Reviews', 'Comments'],
   endpoints: () => ({}),
 });
 

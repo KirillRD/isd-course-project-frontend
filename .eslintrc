@@ -81,6 +81,7 @@
       }
     ],
     "react-hooks/exhaustive-deps": "off",
+    "import/named": "off",
     // Enforce the use of the shorthand syntax.
     "object-shorthand": "error",
     "no-console": "warn"

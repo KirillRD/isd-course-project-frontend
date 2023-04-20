@@ -14,6 +14,7 @@ import ProfilePage from '@/pages/ProfilePage';
 import AdminPage from '@/pages/AdminPage';
 import useAuthUser from '@/hooks/useAuthUser';
 import useLocale from '@/hooks/useLocale';
+import UsersPage from '@/pages/UsersPage';
 
 export default function App() {
   useLocale();
@@ -37,6 +38,7 @@ export default function App() {
 
           <Route element={<Auth allowedRoles={[Role.ADMIN]} />}>
             <Route path={PagePath.ADMIN} element={<AdminPage />} />
+            <Route path={PagePath.USERS} element={<UsersPage />} />
           </Route>
 
           <Route path={PagePath.ANY} element={<NotFoundPage />} />

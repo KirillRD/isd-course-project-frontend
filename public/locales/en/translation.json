@@ -24,6 +24,9 @@
     "confirm-password": {
       "required": "Confirm password is required",
       "format": "Password and confirm password should match"
+    },
+    "roles": {
+      "length": "User must contain at least one role"
     }
   },
   "exception": {
@@ -31,9 +34,14 @@
     "USER_CREDENTIAL_INVALID": "Email or password is incorrect",
     "USER_IS_LOCK": "Your account is lock"
   },
+  "role": {
+    "USER": "USER",
+    "ADMIN": "ADMIN"
+  },
   "navbar": {
-    "login-page-button": "Login",
-    "sign-up-page-button": "Sign up"
+    "login-page": "Login",
+    "sign-up-page": "Sign up",
+    "users-page": "Users"
   },
   "login-form": {
     "header": "Login",
@@ -48,6 +56,43 @@
     "password": "Password",
     "confirm-password": "Confirm password",
     "submit-button": "Sign up"
+  },
+  "user": {
+    "delete-dialog": {
+      "header": "Deleting user",
+      "message": "Are you sure you want to delete this user?"
+    },
+    "edit-dialog": {
+      "header": "Editing user",
+      "form": {
+        "lock": "Unlock/Lock",
+        "roles": "Roles",
+        "confirm-button": "Save",
+        "cancel-button": "Cancel"
+      }
+    },
+    "table": {
+      "title": "Users",
+      "header": {
+        "change-roles-button": "Change roles",
+        "change-roles-title": "Changing users roles",
+        "unlock-button": "Unlock",
+        "unlock-title": "Unlocking users",
+        "lock-button": "Lock",
+        "lock-title": "Locking users",
+        "delete-button": "Delete",
+        "delete-title": "Deleting users",
+        "search-input": "Search"
+      }
+    },
+    "user-image": "Image",
+    "user-email": "Email",
+    "user-name": "Name",
+    "user-review-count": "Review count",
+    "user-like-count": "Like count",
+    "user-sign-up-date": "Sign up date",
+    "user-is-lock": "Lock",
+    "user-roles": "Roles"
   },
   "review": {
     "creation-category": {

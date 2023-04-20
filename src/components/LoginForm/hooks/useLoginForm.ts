@@ -6,18 +6,18 @@ import { Messages } from 'primereact/messages';
 import { useTranslation } from 'react-i18next';
 import { ObjectSchema, object, string } from 'yup';
 
+const loginValidationSchema: ObjectSchema<LoginData> = object({
+  email: string()
+    .email('email.format')
+    .required('email.required')
+    .max(50, 'email.length'),
+  password: string().required('password.required'),
+});
+
 export default function useLoginForm() {
   const [t] = useTranslation('translation', { keyPrefix: 'validation' });
   const errorMessage = useRef<Messages>(null);
   const { login } = useLogin(errorMessage);
-
-  const loginValidationSchema: ObjectSchema<LoginData> = object({
-    email: string()
-      .email('email.format')
-      .required('email.required')
-      .max(50, 'email.length'),
-    password: string().required('password.required'),
-  });
 
   const formik = useFormik<LoginData>({
     initialValues: {
