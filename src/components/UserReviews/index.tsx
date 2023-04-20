@@ -12,7 +12,7 @@ import { Tag } from 'primereact/tag';
 import { CreationCategory, CreationCategoryColor } from '@/structures/enums';
 import styles from './styles.module.scss';
 import { InputText } from 'primereact/inputtext';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { Calendar, CalendarChangeEvent } from 'primereact/calendar';
 import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
@@ -74,12 +74,11 @@ export default function UserReviews({ reviews }: UserReviewsProps) {
     setSelectedReviews(event.value as Review[]);
   };
 
-  const handleGlobalFilterChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleGlobalFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const newFilters = { ...filters };
 
+    // @ts-expect-error
     newFilters.global.value = value;
 
     setFilters(newFilters);
