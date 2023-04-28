@@ -14,9 +14,14 @@ export enum PagePath {
   SIGN_UP = '/sign-up',
   NOT_FOUND = '/not-found',
   PROFILE = '/profile',
-  ADMIN = '/admin',
   ACCESS_DENIED = '/access-denied',
   USERS = '/users',
+  CREATE = '/create',
+  UPDATE = '/update',
+  SELECT = '/select',
+  CREATIONS = '/creations',
+  REVIEWS = '/reviews',
+
   ANY = '*',
 }
 
@@ -29,6 +34,9 @@ export enum ApiEndpoint {
   REFRESH_TOKENS = 'auth/refresh-token/refresh-tokens',
 
   USERS = 'users',
+  CREATIONS = 'creations',
+  REVIEWS = 'reviews',
+  TAGS = 'tags',
 }
 
 export enum Role {
@@ -49,19 +57,15 @@ export enum CreationCategory {
   GAMES = 'GAMES',
 }
 
-export enum CreationCategoryColor {
-  MOVIES = 'bg-blue-300',
-  TV = 'bg-yellow-300',
-  BOOKS = 'bg-green-300',
-  MUSIC = 'bg-purple-300',
-  GAMES = 'bg-red-300',
-}
-
 export enum Exception {
   USER_EMAIL_EXISTS = 'USER_EMAIL_EXISTS',
   USER_CREDENTIAL_INVALID = 'USER_CREDENTIAL_INVALID',
   USER_IS_LOCK = 'USER_IS_LOCK',
   USER_ROLE_ACCESS_DENIED = 'USER_ROLE_ACCESS_DENIED',
+
+  CREATION_TITLE_AND_CATEGORY_EXISTS = 'CREATION_TITLE_AND_CATEGORY_EXISTS',
+
+  REVIEW_GRADE_INVALID_FORMAT = 'REVIEW_GRADE_INVALID_FORMAT',
 
   JWT_ACCESS_TOKEN_EXPIRATION = 'JWT_ACCESS_TOKEN_EXPIRATION',
   JWT_ACCESS_TOKEN_INVALID = 'JWT_ACCESS_TOKEN_INVALID',

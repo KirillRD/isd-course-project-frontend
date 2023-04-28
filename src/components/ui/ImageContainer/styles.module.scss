@@ -1,0 +1,16 @@
+.imageContainer {
+  position: relative;
+}
+
+.imageContainer::after {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.imageContainer img {
+  position: absolute;
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}

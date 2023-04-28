@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react';
 import { Button } from 'primereact/button';
 
 type TableEditButtonProps = {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export default function TableEditButton({ onClick }: TableEditButtonProps) {

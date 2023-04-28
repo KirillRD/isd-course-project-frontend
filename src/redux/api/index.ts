@@ -1,7 +1,7 @@
 import { resetAuth, setAccessToken } from '@/redux/slices/authSlice';
 import { RootState } from '@/redux/store';
 import { ApiEndpoint, Exception } from '@/structures/enums';
-import { AccessTokenResponse, ErrorResponse } from '@/structures/types';
+import { AccessTokenResponse, ResponseError } from '@/structures/types';
 import {
   BaseQueryApi,
   createApi,
@@ -54,7 +54,7 @@ const baseQueryWithReAuth: ApiBaseQueryType = async (
   let response = await baseQueryWithPrepareHeaders(args, api, extraOptions);
 
   if (response.error) {
-    const message = (response.error as ErrorResponse).data.message;
+    const message = (response.error as ResponseError).data.message;
     if (message == Exception.JWT_ACCESS_TOKEN_EXPIRATION) {
       const refreshResult = await commonBaseQuery(
         ApiEndpoint.REFRESH_TOKENS,
@@ -85,7 +85,7 @@ const baseQueryWithReAuth: ApiBaseQueryType = async (
 const api = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReAuth,
-  tagTypes: ['AuthUser', 'Users', 'Reviews', 'Comments'],
+  tagTypes: ['AuthUser', 'Users', 'Reviews', 'Creations', 'Tags'],
   endpoints: () => ({}),
 });
 

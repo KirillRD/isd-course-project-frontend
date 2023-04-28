@@ -27,16 +27,57 @@
     },
     "roles": {
       "length": "User must contain at least one role"
+    },
+    "review": {
+      "title": {
+        "required": "Review name is required",
+        "length": "Review name length must be less than 150"
+      },
+      "body": {
+        "required": "Review is required"
+      },
+      "grade": {
+        "required": "Grade is required",
+        "min": "Grade must be greater than or equal to 0",
+        "max": "Grade must be less than or equal to 10",
+        "format": "Grade must be a integer"
+      },
+      "tag": {
+        "name": {
+          "length": "Tag length must be less than 30"
+        }
+      }
+    },
+    "creation": {
+      "title": {
+        "required": "Title is required",
+        "length": "Title length must be less than 150"
+      },
+      "category": {
+        "required": "Category is required"
+      },
+      "description": {
+        "required": "Description is required",
+        "length": "Description length must be less than 1000"
+      }
     }
   },
   "exception": {
     "USER_EMAIL_EXISTS": "Email already exists",
     "USER_CREDENTIAL_INVALID": "Email or password is incorrect",
-    "USER_IS_LOCK": "Your account is lock"
+    "USER_IS_LOCK": "Your account is lock",
+    "CREATION_TITLE_AND_CATEGORY_EXISTS": "Creation with this title and category already exists"
   },
   "role": {
     "USER": "USER",
     "ADMIN": "ADMIN"
+  },
+  "creation-category": {
+    "MOVIES": "MOVIES",
+    "TV": "TV",
+    "BOOKS": "BOOKS",
+    "MUSIC": "MUSIC",
+    "GAMES": "GAMES"
   },
   "navbar": {
     "login-page": "Login",
@@ -58,6 +99,12 @@
     "submit-button": "Sign up"
   },
   "user": {
+    "table": {
+      "title": "Users",
+      "header": {
+        "search-input": "Search"
+      }
+    },
     "delete-dialog": {
       "header": "Deleting user",
       "message": "Are you sure you want to delete this user?"
@@ -71,53 +118,60 @@
         "cancel-button": "Cancel"
       }
     },
-    "table": {
-      "title": "Users",
-      "header": {
-        "change-roles-button": "Change roles",
-        "change-roles-title": "Changing users roles",
-        "unlock-button": "Unlock",
-        "unlock-title": "Unlocking users",
-        "lock-button": "Lock",
-        "lock-title": "Locking users",
-        "delete-button": "Delete",
-        "delete-title": "Deleting users",
-        "search-input": "Search"
-      }
-    },
-    "user-image": "Image",
-    "user-email": "Email",
-    "user-name": "Name",
-    "user-review-count": "Review count",
-    "user-like-count": "Like count",
-    "user-sign-up-date": "Sign up date",
-    "user-is-lock": "Lock",
-    "user-roles": "Roles"
+    "email": "Email",
+    "name": "Name",
+    "review-count": "Review count",
+    "like-count": "Like count",
+    "sign-up-date": "Sign up date",
+    "is-lock": "Lock",
+    "roles": "Roles",
+    "image": "Image"
   },
   "review": {
-    "creation-category": {
-      "MOVIES": "MOVIES",
-      "TV": "TV",
-      "BOOKS": "BOOKS",
-      "MUSIC": "MUSIC",
-      "GAMES": "GAMES"
-    },
     "table": {
       "title": "Reviews",
       "header": {
-        "create-button": "Create",
-        "edit-button": "Edit",
-        "delete-button": "Delete",
+        "add-review-button": "Add",
         "clear-filters-button": "Clear",
         "global-search-input": "Search"
+      },
+      "creation-image": "Creation image",
+      "creation-category": "Category"
+    },
+    "add-form": {
+      "header": "Adding review",
+      "submit-button": "Add"
+    },
+    "title": "Review name",
+    "body": "Review",
+    "grade": "Grade",
+    "creation": "Creation",
+    "create-date": "Create date",
+    "tags": "Tags",
+    "images": "Images"
+  },
+  "creation": {
+    "list": {
+      "title": "Choose creation",
+      "header": {
+        "search-input": "Search",
+        "search-button": "Find"
+      },
+      "description": "First, you need to decide which creation you want to write a review for",
+      "add-creation-message": "Can't find what you need?",
+      "add-creation-link": "Add creation",
+      "item": {
+        "creation-link": "More detail"
       }
     },
-    "review-image": "Image",
-    "review-title": "Review",
-    "creation-title": "Creation",
-    "creation-category-title": "Category",
-    "review-create-date": "Date",
-    "review-grade": "Grade"
+    "add-form" : {
+      "header": "Adding creation",
+      "category-placeholder": "Creation category",
+      "submit-button": "Add"
+    },
+    "title": "Title",
+    "category": "Category",
+    "description": "Description"
   },
   "prime-locale": {
     "startsWith": "Starts with",

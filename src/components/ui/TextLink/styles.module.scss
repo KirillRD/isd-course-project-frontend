@@ -1,0 +1,17 @@
+.link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.selectionLink {
+  color: var(--text-color);
+}
+
+.selectionLink:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}

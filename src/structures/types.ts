@@ -1,6 +1,10 @@
 import { CreationCategory, Exception, Role } from '@/structures/enums';
 
-export type ErrorResponse = {
+export type ErrorMessage = {
+  message: Exception;
+};
+
+export type ResponseError = {
   data: {
     status: number;
     message: Exception;
@@ -40,8 +44,23 @@ export type User = {
 export type Creation = {
   id: number;
   title: string;
+  description: string;
   category: CreationCategory;
   reviews?: Review[];
+};
+
+export type Tag = {
+  id: number;
+  name: string;
+  reviews?: Review[];
+};
+
+export type ReviewImage = {
+  id: number;
+  reviewId: number;
+  fileId: string;
+  url: string;
+  review?: Review;
 };
 
 export type Review = {
@@ -54,4 +73,6 @@ export type Review = {
   body: string;
   grade: number;
   createDate: Date;
+  tags?: Tag[];
+  images?: ReviewImage[];
 };

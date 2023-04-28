@@ -1,7 +1,7 @@
 import api from '@/redux/api';
 import { ApiEndpoint, Role } from '@/structures/enums';
 import { User } from '@/structures/types';
-import { HTTPMethod } from 'http-method-enum';
+import { HttpMethod } from 'http-enums';
 
 export type GetUserCountParams = {
   search?: string;
@@ -26,6 +26,7 @@ const userApi = api.injectEndpoints({
       query: (id: number) => ({
         url: `${ApiEndpoint.USERS}/${id}`,
       }),
+      providesTags: ['Users', 'Reviews'],
     }),
     getUsers: builder.query<User[], GetUsersParams>({
       query: (params: GetUsersParams) => ({
@@ -44,7 +45,7 @@ const userApi = api.injectEndpoints({
     updateUser: builder.mutation<void, UpdateUserBody>({
       query: ({ id, ...body }) => ({
         url: `${ApiEndpoint.USERS}/${id}`,
-        method: HTTPMethod.PATCH,
+        method: HttpMethod.PATCH,
         body,
       }),
       invalidatesTags: ['Users'],
@@ -52,7 +53,7 @@ const userApi = api.injectEndpoints({
     deleteUser: builder.mutation<void, number>({
       query: (id: number) => ({
         url: `${ApiEndpoint.USERS}/${id}`,
-        method: HTTPMethod.DELETE,
+        method: HttpMethod.DELETE,
       }),
       invalidatesTags: ['Users'],
     }),

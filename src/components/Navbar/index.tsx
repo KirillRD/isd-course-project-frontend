@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { PagePath, Role } from '@/structures/enums';
 import { Button } from 'primereact/button';
-import styles from './styles.module.scss';
 
 export default function Navbar() {
   const [t] = useTranslation('translation', { keyPrefix: 'navbar' });
@@ -15,7 +14,7 @@ export default function Navbar() {
     <nav className="h-4rem w-full surface-card border-bottom-1 surface-border">
       <div className="h-full w-full flex justify-content-center align-items-center">
         <div
-          className={`col-11 flex justify-content-between align-items-center ${styles.linksFormat}`}
+          className={`col-11 flex justify-content-between align-items-center`}
         >
           <div className="flex gap-3">
             {authUser?.roles.includes(Role.ADMIN) && (

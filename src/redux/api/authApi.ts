@@ -6,7 +6,7 @@ import {
   SignUpData,
   User,
 } from '@/structures/types';
-import { HTTPMethod } from 'http-method-enum';
+import { HttpMethod } from 'http-enums';
 
 type SignUpRequest = {
   email: string;
@@ -19,7 +19,7 @@ const authApi = api.injectEndpoints({
     signUp: builder.mutation<AccessTokenResponse, SignUpRequest>({
       query: (body: SignUpData) => ({
         url: ApiEndpoint.SIGN_UP,
-        method: HTTPMethod.POST,
+        method: HttpMethod.POST,
         body: {
           email: body.email,
           name: body.name,
@@ -30,14 +30,14 @@ const authApi = api.injectEndpoints({
     login: builder.mutation<AccessTokenResponse, LoginData>({
       query: (body: LoginData) => ({
         url: ApiEndpoint.LOGIN,
-        method: HTTPMethod.POST,
+        method: HttpMethod.POST,
         body,
       }),
     }),
     logout: builder.mutation<void, void>({
       query: () => ({
         url: ApiEndpoint.LOGOUT,
-        method: HTTPMethod.POST,
+        method: HttpMethod.POST,
       }),
     }),
     getProfile: builder.query<User, void>({

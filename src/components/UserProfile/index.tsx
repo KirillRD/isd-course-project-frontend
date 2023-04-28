@@ -1,6 +1,6 @@
 import UserInfo from '@/components/UserInfo';
-import useUserProfile from '@/components/UserProfile/hooks/useUserProfile';
-import UserReviews from '@/components/UserReviews';
+import ReviewTable from '@/components/ReviewTable';
+import useGetUserById from '@/hooks/api/user/useGetUserById';
 import { Review } from '@/structures/types';
 
 type UserProfileProps = {
@@ -8,12 +8,12 @@ type UserProfileProps = {
 };
 
 export default function UserProfile({ userId }: UserProfileProps) {
-  const { user } = useUserProfile(userId);
+  const { user } = useGetUserById(userId);
 
   return (
     <div className="flex flex-column gap-2">
       {user && <UserInfo user={user} />}
-      {user && <UserReviews reviews={user?.reviews as Review[]} />}
+      {user && <ReviewTable reviews={user?.reviews as Review[]} />}
     </div>
   );
 }

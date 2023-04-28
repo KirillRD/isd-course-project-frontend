@@ -1,9 +1,9 @@
-import UserList from '@/components/UserList';
+import UserTable from '@/components/UserTable';
 
 export default function UsersPage() {
   return (
     <div className="col-8">
-      <UserList />
+      <UserTable />
     </div>
   );
 }
