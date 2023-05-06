@@ -4,27 +4,17 @@ import {
 } from '@/redux/api/creationApi';
 import { useState } from 'react';
 
-export default function useGetCreations() {
-  const [inputSearchParams, setInputSearchParams] =
-    useState<GetCreationsParams>({
-      search: '',
-    });
-  const [searchParams, setSearchParams] =
-    useState<GetCreationsParams>(inputSearchParams);
-  const { data } = useGetCreationsQuery(searchParams, {
-    skip: !searchParams.search,
+export default function useGetCreations(stop?: boolean) {
+  const [searchParams, setSearchParams] = useState<GetCreationsParams>({
+    search: '',
   });
-
-  const refetchCreations = () => {
-    setSearchParams({
-      ...inputSearchParams,
-    });
-  };
+  const { data } = useGetCreationsQuery(searchParams, {
+    skip: stop ?? !searchParams.search,
+  });
 
   return {
     creations: data,
-    search: refetchCreations,
-    inputSearchParams,
-    setInputSearchParams,
+    searchParams,
+    setSearchParams,
   };
 }

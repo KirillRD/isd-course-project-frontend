@@ -14,7 +14,7 @@ export default function useTags(
   const [searchParams, setSearchParams] = useState<GetTagsParams>({
     search: '',
   });
-  const { tags } = useGetTags(searchParams);
+  const { tags } = useGetTags({ params: searchParams });
 
   const filteredTags = useMemo(() => {
     const newFilteredTags: TagBody[] | undefined = tags?.filter(

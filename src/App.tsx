@@ -20,6 +20,7 @@ import ReviewCreatePage from '@/pages/ReviewCreatePage';
 import ReviewPage from '@/pages/ReviewPage';
 import UserPage from '@/pages/UserPage';
 import ReviewUpdatePage from '@/pages/ReviewUpdatePage';
+import ReviewCatalog from '@/pages/ReviewCatalog';
 
 export default function App() {
   useLocale();
@@ -32,6 +33,7 @@ export default function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path={PagePath.REVIEWS}>
+            <Route index element={<ReviewCatalog />} />
             <Route path=":reviewId" element={<ReviewPage />} />
           </Route>
 

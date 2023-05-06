@@ -1,3 +1,9 @@
+import FullReviewDescription from '@/components/FullReviewDescription';
+
 export default function ReviewPage() {
-  return <p>Review page</p>;
+  return (
+    <div className="col-5">
+      <FullReviewDescription />
+    </div>
+  );
 }

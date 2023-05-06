@@ -36,8 +36,12 @@ export type User = {
   isLock: boolean;
   roles: Role[];
   reviews?: Review[];
+  reviewLikes?: Review[];
+  creationRatings?: CreationRating[];
+  reviewComments?: ReviewComment[];
   _count?: {
     reviews?: number;
+    reviewLikes?: number;
   };
 };
 
@@ -47,12 +51,18 @@ export type Creation = {
   description: string;
   category: CreationCategory;
   reviews?: Review[];
+  ratings?: CreationRating[];
+  averageRating: number;
+  userRating?: number;
 };
 
 export type Tag = {
   id: number;
   name: string;
   reviews?: Review[];
+  _count?: {
+    reviews?: number;
+  };
 };
 
 export type ReviewImage = {
@@ -61,6 +71,24 @@ export type ReviewImage = {
   fileId: string;
   url: string;
   review?: Review;
+};
+
+export type CreationRating = {
+  creationId: number;
+  userId: number;
+  rating: number;
+  creation?: Creation;
+  user?: User;
+};
+
+export type ReviewComment = {
+  id: number;
+  reviewId: number;
+  userId: number;
+  comment: string;
+  createDate: Date;
+  review?: Review;
+  user?: User;
 };
 
 export type Review = {
@@ -75,4 +103,10 @@ export type Review = {
   createDate: Date;
   tags?: Tag[];
   images?: ReviewImage[];
+  userLikes?: User[];
+  comments?: ReviewComment[];
+  _count?: {
+    userLikes?: number;
+  };
+  userLike?: boolean;
 };

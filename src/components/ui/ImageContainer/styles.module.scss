@@ -1,11 +1,6 @@
 .imageContainer {
   position: relative;
-}
-
-.imageContainer::after {
-  content: "";
-  display: block;
-  padding-top: 100%;
+  padding-bottom: 100%;
 }
 
 .imageContainer img {
@@ -13,4 +8,10 @@
   object-fit: contain;
   height: 100%;
   width: 100%;
+}
+
+.imageSelection:hover {
+  cursor: pointer;
+  filter: brightness(90%);
+  background-color: var(--surface-hover);
 }

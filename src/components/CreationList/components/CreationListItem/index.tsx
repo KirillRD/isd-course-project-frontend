@@ -16,7 +16,7 @@ export default function CreationListItem({ creation }: CreationListItemProps) {
   });
 
   return (
-    <div className="w-full flex">
+    <div className="w-full flex gap-2">
       <div className={styles.image}>
         <ImageLink
           path={`../${creation.id}`}

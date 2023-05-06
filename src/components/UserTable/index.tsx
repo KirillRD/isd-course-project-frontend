@@ -7,11 +7,11 @@ import { getFormattedDate } from '@/utils';
 import LockTag from '@/components/ui/LockTag';
 import UserActions from '@/components/UserTable/components/UserActions';
 import UserTableHeader from '@/components/UserTable/components/UserTableHeader';
-import useUserTableParams from '@/components/UserTable/hooks/useUserTableParams';
 import UserRoles from '@/components/UserTable/components/UserRoles';
 import TextLink from '@/components/ui/TextLink';
 import { PagePath } from '@/structures/enums';
 import ImageLink from '@/components/ui/ImageLink';
+import useUserTable from '@/components/UserTable/hooks/useUserTable';
 
 export default function UserTable() {
   const [t] = useTranslation('translation', { keyPrefix: 'user' });
@@ -23,7 +23,7 @@ export default function UserTable() {
     searchValue,
     handleSearchChange,
     handlePage,
-  } = useUserTableParams();
+  } = useUserTable();
 
   const imageTemplate = (user: User) => {
     return (

@@ -37,6 +37,9 @@ export enum ApiEndpoint {
   CREATIONS = 'creations',
   REVIEWS = 'reviews',
   TAGS = 'tags',
+  LIKES = 'likes',
+  CREATION_RATINGS = 'creation-ratings',
+  REVIEW_COMMENTS = 'review-comments',
 }
 
 export enum Role {

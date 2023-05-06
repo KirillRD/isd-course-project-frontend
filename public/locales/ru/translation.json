@@ -60,6 +60,12 @@
         "required": "Описание обязательно",
         "length": "Длина описания должна быть меньше 1000"
       }
+    },
+    "review-comment": {
+      "comment": {
+        "required": "Комментарий обязателен",
+        "length": "Длина комментария должна быть меньше 2000"
+      }
     }
   },
   "exception": {
@@ -82,6 +88,8 @@
   "navbar": {
     "login-page": "Вход",
     "sign-up-page": "Регистрация",
+    "home-page": "Главная",
+    "review-catalog-page": "Каталог отзывов",
     "users-page": "Пользователи"
   },
   "login-form": {
@@ -128,6 +136,30 @@
     "image": "Изобр."
   },
   "review": {
+    "list": {
+      "create-date-desc": {
+        "title": "Последние добавленные обзоры"
+      },
+      "grade-desc": {
+        "title": "Обзоры с самыми большими оценками"
+      },
+      "title": "Каталог отзывов",
+      "header": {
+        "review": "Название обзора",
+        "creation": "Творение",
+        "creation-categories": "Категории творения",
+        "tags": "Теги",
+        "order": "Сортировка",
+        "order-options": {
+          "review-create-date-asc": "Review create date asc",
+          "review-create-date-desc": "Review create date desc",
+          "review-title-asc": "Review title asc",
+          "review-title-desc": "Review title desc",
+          "review-grade-asc": "Review grade asc",
+          "review-grade-desc": "Review grade desc"
+        }
+      }
+    },
     "table": {
       "title": "Обзоры",
       "header": {
@@ -172,6 +204,20 @@
     "title": "Заголовок",
     "category": "Категория",
     "description": "Описание"
+  },
+  "review-comment": {
+    "block": {
+      "title": "Комментарии"
+    },
+    "add-form": {
+      "submit-button": "Добавить"
+    },
+    "comment": "Комментарий"
+  },
+  "tag": {
+    "cloud": {
+      "title": "Облако тегов"
+    }
   },
   "prime-locale":{
     "startsWith": "Начинается с",

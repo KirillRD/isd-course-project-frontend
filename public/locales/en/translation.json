@@ -60,6 +60,12 @@
         "required": "Description is required",
         "length": "Description length must be less than 1000"
       }
+    },
+    "review-comment": {
+      "comment": {
+        "required": "Comment is required",
+        "length": "Comment length must be less than 2000"
+      }
     }
   },
   "exception": {
@@ -82,6 +88,8 @@
   "navbar": {
     "login-page": "Login",
     "sign-up-page": "Sign up",
+    "home-page": "Main",
+    "review-catalog-page": "Review catalog",
     "users-page": "Users"
   },
   "login-form": {
@@ -128,6 +136,30 @@
     "image": "Image"
   },
   "review": {
+    "list": {
+      "create-date-desc": {
+        "title": "Recently added reviews"
+      },
+      "grade-desc": {
+        "title": "Reviews with the highest grades"
+      },
+      "title": "Review catalog",
+      "header": {
+        "review": "Review title",
+        "creation": "Creation",
+        "creation-categories": "Creation categories",
+        "tags": "Tags",
+        "order": "Order",
+        "order-options": {
+          "review-create-date-asc": "Review create date asc",
+          "review-create-date-desc": "Review create date desc",
+          "review-title-asc": "Review title asc",
+          "review-title-desc": "Review title desc",
+          "review-grade-asc": "Review grade asc",
+          "review-grade-desc": "Review grade desc"
+        }
+      }
+    },
     "table": {
       "title": "Reviews",
       "header": {
@@ -172,6 +204,20 @@
     "title": "Title",
     "category": "Category",
     "description": "Description"
+  },
+  "review-comment": {
+    "block": {
+      "title": "Comments"
+    },
+    "add-form": {
+      "submit-button": "Add"
+    },
+    "comment": "Comment"
+  },
+  "tag": {
+    "cloud": {
+      "title": "Tag cloud"
+    }
   },
   "prime-locale": {
     "startsWith": "Starts with",

@@ -3,7 +3,7 @@ import useGetUsers from '@/hooks/api/user/useGetUsers';
 import { FIRST_PAGE, DEFAULT_PAGE_SIZE } from '@/utils/constants';
 import { DataTablePageEvent } from 'primereact/datatable';
 
-export default function useUserTableParams() {
+export default function useUserTable() {
   const { users, userCount, usersParams, setParams } = useGetUsers(
     FIRST_PAGE,
     DEFAULT_PAGE_SIZE

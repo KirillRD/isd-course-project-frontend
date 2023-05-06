@@ -38,9 +38,10 @@ export default function useGetUsers(initPage: number, initPageSize: number) {
     [searchParams]
   );
 
-  const setParams = (params: GetUsersParams) => {
+  const setParams = (params: GetUsersParams, replace?: boolean) => {
     setSearchParams(
-      queryString.stringify(params, { skipEmptyString: true, skipNull: true })
+      queryString.stringify(params, { skipEmptyString: true, skipNull: true }),
+      { replace }
     );
   };
 
@@ -49,23 +50,22 @@ export default function useGetUsers(initPage: number, initPageSize: number) {
       const page = +usersParams.page;
       const size = +usersParams.size;
 
-      setParams({
-        ...usersParams,
-        page: `${page && page > 0 ? page : initPage}`,
-        size: `${size && size > 0 ? size : initPageSize}`,
-      });
+      setParams(
+        {
+          ...usersParams,
+          page: `${page && page > 0 ? page : initPage}`,
+          size: `${size && size > 0 ? size : initPageSize}`,
+        },
+        true
+      );
     };
 
     load();
   }, []);
 
-  const { data: userCount } = useGetUserCountQuery(userCountParams, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data: userCount } = useGetUserCountQuery(userCountParams);
 
-  const { data: users } = useGetUsersQuery(usersParams, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data: users } = useGetUsersQuery(usersParams);
 
-  return { userCount, users, setParams, usersParams };
+  return { userCount, users, usersParams, setParams };
 }

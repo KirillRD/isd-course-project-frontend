@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { DataView } from 'primereact/dataview';
 import useGetCreations from '@/hooks/api/creation/useGetCreations';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Creation } from '@/structures/types';
 import { Button } from 'primereact/button';
 import { Link } from 'react-router-dom';
@@ -11,13 +11,17 @@ import CreationListItem from '@/components/CreationList/components/CreationListI
 
 export default function CreationList() {
   const [t] = useTranslation('translation', { keyPrefix: 'creation.list' });
-  const { creations, search, inputSearchParams, setInputSearchParams } =
-    useGetCreations();
+  const [inputSearch, setInputSearch] = useState<string>('');
+  const { creations, searchParams, setSearchParams } = useGetCreations();
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputSearchParams({
-      ...inputSearchParams,
-      search: event.target.value,
+    setInputSearch(event.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    setSearchParams({
+      ...searchParams,
+      search: inputSearch,
     });
   };
 
@@ -34,9 +38,9 @@ export default function CreationList() {
         itemTemplate={itemTemplate}
         header={
           <CreationListHeader
-            searchValue={inputSearchParams.search}
+            searchValue={inputSearch}
             onSearchChange={handleSearchChange}
-            onSearchSubmit={search}
+            onSearchSubmit={handleSearchSubmit}
           />
         }
         emptyMessage=" "

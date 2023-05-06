@@ -1,5 +1,6 @@
-export const getFormattedDate = (value: Date): string => {
-  return value.toLocaleDateString(undefined, {
+export const getFormattedDate = (value: Date | string): string => {
+  const date = value instanceof Date ? value : new Date(value);
+  return date.toLocaleDateString(undefined, {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',

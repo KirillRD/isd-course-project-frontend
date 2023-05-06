@@ -1,0 +1,33 @@
+.imageColumn {
+  flex: 0 0 20%;
+}
+
+.infoColumn {
+  flex: 0 0 80%;
+}
+
+.reviewContainer {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.reviewContainer::after {
+  position: relative;
+  height: 100%;
+  content: '';
+  display: block;
+  background: linear-gradient(to bottom, transparent, var(--surface-ground));
+}
+
+.review {
+  position: absolute;
+}
+
+.review > :first-child {
+  margin-top: 0;
+}
+
+.review * {
+  max-width: 100%;
+}
