@@ -1,4 +1,4 @@
-import { GRADE_STEP, MAX_GARDE, MIN_GRADE } from '@/utils/constants';
+import { GRADE_STEP, MAX_GRADE, MIN_GRADE } from '@/utils/constants';
 import { ColumnFilterElementTemplateOptions } from 'primereact/column';
 import { InputNumber, InputNumberChangeEvent } from 'primereact/inputnumber';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +19,7 @@ export default function GradeFilter({ options }: GradeFilterProps) {
       value={options.value as number}
       onChange={handleChange}
       min={MIN_GRADE}
-      max={MAX_GARDE}
+      max={MAX_GRADE}
       step={GRADE_STEP}
       placeholder={t('grade')!}
       showButtons

@@ -1,15 +1,31 @@
 import ImageContainer from '@/components/ui/ImageContainer';
-import { Link } from 'react-router-dom';
+import {
+  Link,
+  URLSearchParamsInit,
+  createSearchParams,
+} from 'react-router-dom';
 
 type ImageLinkProps = {
   path: string;
+  args?: URLSearchParamsInit;
   imageUrl: string;
   alt?: string;
 };
 
-export default function ImageLink({ path, imageUrl, alt }: ImageLinkProps) {
+export default function ImageLink({
+  path,
+  args,
+  imageUrl,
+  alt,
+}: ImageLinkProps) {
   return (
-    <Link to={path} className="block border-round-md">
+    <Link
+      to={{
+        pathname: path,
+        search: createSearchParams(args).toString(),
+      }}
+      className="block border-round-md"
+    >
       <ImageContainer url={imageUrl} alt={alt} selection />
     </Link>
   );

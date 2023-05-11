@@ -4,9 +4,11 @@ import { Root, createRoot } from 'react-dom/client';
 import '@algolia/autocomplete-theme-classic';
 import { createRedirectUrlPlugin } from '@algolia/autocomplete-plugin-redirect-url';
 
-export default function AlgoliaAutocomplete(
-  props?: Partial<AutocompleteOptions<any>>
-) {
+type FullTextSearchProps = Partial<AutocompleteOptions<any>> & {
+  className?: string;
+};
+
+export default function AlgoliaAutocomplete(props: FullTextSearchProps) {
   const containerRef = useRef(null);
   const panelRootRef = useRef<Root | null>(null);
   const rootRef = useRef<HTMLElement | null>(null);
@@ -39,5 +41,5 @@ export default function AlgoliaAutocomplete(
     };
   }, [props]);
 
-  return <div ref={containerRef} />;
+  return <div className={props.className} ref={containerRef} />;
 }

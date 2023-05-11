@@ -40,16 +40,15 @@ export default function ReviewImageGalleria({
         showThumbnails={false}
       />
       <div className="grid">
-        {images.length &&
-          images.map((image, index) => (
-            <div key={image.id} className="col-2">
-              <ImageContainer
-                url={image.url}
-                onClick={() => handleImageClick(index)}
-                selection
-              />
-            </div>
-          ))}
+        {images.map((image, index) => (
+          <div key={image.id} className="xl:col-2 md:col-3 col-4">
+            <ImageContainer
+              url={image.url}
+              onClick={() => handleImageClick(index)}
+              selection
+            />
+          </div>
+        ))}
       </div>
     </>
   );

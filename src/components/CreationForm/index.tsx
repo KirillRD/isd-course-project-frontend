@@ -9,13 +9,19 @@ import { CreationCategory } from '@/structures/enums';
 import CreationCategoryTag from '@/components/ui/CreationCategoryTag';
 import useSubmit from './hooks/useSubmit';
 import { Messages } from 'primereact/messages';
+import useErrorMessage from '@/hooks/useErrorMessage';
+import { FileUpload } from 'primereact/fileupload';
+import useImage from '@/components/CreationForm/hooks/useImage';
+import { MAX_IMAGE_SIZE } from '@/utils/constants';
 
 export default function CreationForm() {
   const [t] = useTranslation('translation', { keyPrefix: 'creation' });
   const { submit, error } = useSubmit();
+  const { errorMessage } = useErrorMessage(error);
   const {
     handleSubmit,
     handleChange,
+    setFieldValue,
     titleValue,
     isTitleError,
     titleError,
@@ -25,8 +31,13 @@ export default function CreationForm() {
     descriptionValue,
     isDescriptionError,
     descriptionError,
-    errorMessage,
-  } = useCreationForm(submit, error);
+    imageFileValue,
+    isImageFileError,
+    imageFileError,
+  } = useCreationForm(submit);
+
+  const { creationImage, handleImageSelect, handleImageRemove } =
+    useImage(setFieldValue);
 
   const categoryItemTemplate = (option: CreationCategory) => {
     return <CreationCategoryTag creationCategory={option} />;
@@ -48,7 +59,7 @@ export default function CreationForm() {
       className="flex flex-column p-fluid p-4 surface-card border-round border-1 surface-border"
       onSubmit={handleSubmit}
     >
-      <h1 className="align-self-center mt-0 mb-2">{t('add-form.header')}</h1>
+      <h2 className="mt-0">{t('add-form.header')}</h2>
 
       <Messages ref={errorMessage} />
 
@@ -93,7 +104,27 @@ export default function CreationForm() {
         <small className="p-error">{descriptionError}</small>
       </div>
 
-      <Button type="submit" label={t('add-form.submit-button')!} />
+      <div className="field">
+        <label htmlFor="imageFile">{t('image')}</label>
+        <FileUpload
+          className={classNames({ 'p-invalid': isImageFileError })}
+          ref={creationImage}
+          id="imageFile"
+          onSelect={handleImageSelect}
+          onRemove={handleImageRemove}
+          accept="image/*"
+          maxFileSize={MAX_IMAGE_SIZE}
+          uploadOptions={{ className: 'hidden' }}
+          cancelOptions={{ className: 'hidden' }}
+        />
+        <small className="p-error">{imageFileError}</small>
+      </div>
+
+      <Button
+        className="w-9rem align-self-end"
+        type="submit"
+        label={t('add-form.submit-button')!}
+      />
     </form>
   );
 }

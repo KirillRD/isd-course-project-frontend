@@ -5,7 +5,7 @@ import {
 import { Creation } from '@/structures/types';
 
 export default function useCreateCreation() {
-  const [createCreationMutation] = useCreateCreationMutation();
+  const [createCreationMutation, { error }] = useCreateCreationMutation();
 
   const createCreation = async (
     createCreationBody: CreateCreationBody
@@ -13,5 +13,5 @@ export default function useCreateCreation() {
     return createCreationMutation(createCreationBody).unwrap();
   };
 
-  return { createCreation };
+  return { createCreation, error };
 }

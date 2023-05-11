@@ -19,10 +19,8 @@ export default function UserInfo({ user }: UserInfoProps) {
 
   return (
     <div className="p-4 surface-card border-round border-1 surface-border">
-      <p>{user.id}</p>
-      <p>{user.email}</p>
-      <p>{user.name}</p>
-      <p>{user.signUpDate.toString()}</p>
+      <p>Email: {user.email}</p>
+      <p>Name: {user.name}</p>
       <Button label="logout" onClick={onSubmit} />
     </div>
   );

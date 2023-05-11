@@ -7,15 +7,21 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TagCloud } from 'react-tagcloud';
 import styles from './styles.module.scss';
+import { TAG_ARG } from '@/utils/reviewSearchParams';
 
 type TagCloudItem = {
+  id: number;
   value: string;
   count: number;
 };
 
 const getTagCloudTags = (tags: Tag[] | undefined): TagCloudItem[] => {
   return tags
-    ? tags.map((tag) => ({ value: tag.name, count: tag._count!.reviews! }))
+    ? tags.map((tag) => ({
+        id: tag.id,
+        value: tag.name,
+        count: tag._count!.reviews!,
+      }))
     : [];
 };
 
@@ -34,6 +40,7 @@ export default function ReviewTagCloud() {
         className={styles.tagCloudItem}
         style={tagStyle}
         path={PagePath.REVIEWS}
+        args={{ [TAG_ARG]: `${tag.id}` }}
       >
         {tag.value}
       </TextLink>

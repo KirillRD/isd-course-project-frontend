@@ -5,7 +5,7 @@ export default function ProfilePage() {
   const authUser = useAppSelector((state) => state.authUser.user);
 
   return (
-    <div className="col-10">
+    <div className="xl:col-9 col-12">
       <UserProfile userId={authUser?.id as number} />
     </div>
   );

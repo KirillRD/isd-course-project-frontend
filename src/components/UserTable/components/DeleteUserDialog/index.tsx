@@ -1,3 +1,4 @@
+import DeleteConfirmDialog from '@/components/ui/DeleteConfirmDialog';
 import useDeleteUser from '@/hooks/api/user/useDeleteUser';
 import { User } from '@/structures/types';
 import { ConfirmDialog } from 'primereact/confirmdialog';
@@ -24,15 +25,12 @@ export default function DeleteUserDialog({
   };
 
   return (
-    <ConfirmDialog
-      visible={visible}
-      onHide={onHide}
-      icon="pi pi-exclamation-triangle p-error"
+    <DeleteConfirmDialog
       header={t('header')}
       message={t('message')}
-      accept={handleAccept}
-      reject={onHide}
-      acceptClassName="p-button-danger"
-    ></ConfirmDialog>
+      visible={visible}
+      onAccept={handleAccept}
+      onHide={onHide}
+    />
   );
 }

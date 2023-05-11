@@ -8,8 +8,8 @@ export type GetUserCountParams = {
 };
 
 export type GetUsersParams = {
-  page: string;
-  size: string;
+  page: number;
+  size: number;
 } & GetUserCountParams;
 
 export type UpdateUserBody = {

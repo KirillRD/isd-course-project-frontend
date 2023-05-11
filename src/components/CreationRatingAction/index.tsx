@@ -1,13 +1,16 @@
 import useCreationRatingAction from '@/components/CreationRatingAction/hooks/useCreationRatingAction';
+import RatingIcon from '@/components/ui/RatingIcon';
 import { MAX_RATING_VALUE } from '@/utils/constants';
 import { Rating } from 'primereact/rating';
 
 type CreationRatingProps = {
+  className?: string;
   creationId: number;
   userRating: number | undefined;
 };
 
 export default function CreationRatingAction({
+  className,
   creationId,
   userRating,
 }: CreationRatingProps) {
@@ -15,9 +18,11 @@ export default function CreationRatingAction({
 
   return (
     <Rating
-      className="text-primary"
+      className={className}
       value={userRating}
       onChange={handleClick}
+      offIcon={<RatingIcon hover />}
+      onIcon={<RatingIcon colored fill />}
       stars={MAX_RATING_VALUE}
       cancel={false}
     />

@@ -1,32 +1,4 @@
-import { CreationCategory, Exception, Role } from '@/structures/enums';
-
-export type ErrorMessage = {
-  message: Exception;
-};
-
-export type ResponseError = {
-  data: {
-    status: number;
-    message: Exception;
-    error?: string;
-  };
-};
-
-export type SignUpData = {
-  email: string;
-  name: string;
-  password: string;
-  confirmPassword: string;
-};
-
-export type LoginData = {
-  email: string;
-  password: string;
-};
-
-export type AccessTokenResponse = {
-  accessToken: string;
-};
+import { CreationCategory, Role } from '@/structures/enums';
 
 export type User = {
   id: number;
@@ -49,14 +21,19 @@ export type Creation = {
   id: number;
   title: string;
   description: string;
+  imageId: string;
+  imageUrl: string;
   category: CreationCategory;
   reviews?: Review[];
   ratings?: CreationRating[];
-  averageRating: number;
-  userRating?: number;
+  _count?: {
+    reviews?: number;
+  };
+  averageRating?: number;
 };
 
 export type Tag = {
+  value: string | string[];
   id: number;
   name: string;
   reviews?: Review[];
@@ -107,6 +84,6 @@ export type Review = {
   comments?: ReviewComment[];
   _count?: {
     userLikes?: number;
+    comments?: number;
   };
-  userLike?: boolean;
 };

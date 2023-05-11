@@ -1,9 +1,7 @@
-import Card from '@/components/ui/Card';
-import ReviewItem from '@/components/ui/ReviewItem';
-import { GetReviewsParams, useGetReviewsQuery } from '@/redux/api/reviewApi';
-import { Review } from '@/structures/types';
-import { DataView } from 'primereact/dataview';
-import { useTranslation } from 'react-i18next';
+import ReviewListByParams from '@/components/ReviewListByParams';
+import { GetReviewsParams } from '@/redux/api/reviewApi';
+
+const translatePrefix = 'create-date-desc';
 
 const params: GetReviewsParams = {
   page: 1,
@@ -12,19 +10,7 @@ const params: GetReviewsParams = {
 };
 
 export default function ReviewListByCreateDateDesc() {
-  const [t] = useTranslation('translation', {
-    keyPrefix: 'review.list.create-date-desc',
-  });
-  const { data } = useGetReviewsQuery(params);
-
-  const itemTemplate = (review: Review) => {
-    return <ReviewItem review={review} />;
-  };
-
   return (
-    <Card>
-      <h2 className="mt-0">{t('title')}</h2>
-      <DataView value={data} dataKey="id" itemTemplate={itemTemplate} />
-    </Card>
+    <ReviewListByParams translatePrefix={translatePrefix} params={params} />
   );
 }

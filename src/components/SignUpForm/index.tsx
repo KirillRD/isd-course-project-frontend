@@ -1,13 +1,29 @@
+import GoogleButton from '@/components/GoogleButton';
 import useSignUpForm from '@/components/SignUpForm/hooks/useSignUpForm';
+import useSubmit from '@/components/SignUpForm/hooks/useSubmit';
+import TextLink from '@/components/ui/TextLink';
+import useErrorMessage from '@/hooks/useErrorMessage';
+import { PagePath } from '@/structures/enums';
 import { Button } from 'primereact/button';
+import { Divider } from 'primereact/divider';
 import { InputText } from 'primereact/inputtext';
 import { Messages } from 'primereact/messages';
 import { Password } from 'primereact/password';
 import { classNames } from 'primereact/utils';
 import { useTranslation } from 'react-i18next';
 
+export type SignUpFormBody = {
+  email: string;
+  name: string;
+  password: string;
+  confirmPassword: string;
+};
+
 export default function SignUp() {
-  const [t] = useTranslation('translation', { keyPrefix: 'sign-up-form' });
+  const [t] = useTranslation('translation', { keyPrefix: 'user' });
+  const { submit, error, googleSubmit, googleError } = useSubmit();
+  const { errorMessage } = useErrorMessage(error);
+  const { errorMessage: googleErrorMessage } = useErrorMessage(googleError);
   const {
     handleSubmit,
     handleChange,
@@ -23,17 +39,19 @@ export default function SignUp() {
     confirmPasswordValue,
     isConfirmPasswordError,
     confirmPasswordError,
-    errorMessage,
-  } = useSignUpForm();
+  } = useSignUpForm(submit);
 
   return (
     <form
       className="flex flex-column p-fluid p-4 surface-card border-round border-1 surface-border"
       onSubmit={handleSubmit}
     >
-      <h1 className="align-self-center mt-0 mb-2">{t('header')}</h1>
+      <h1 className="align-self-center mt-0 mb-2">
+        {t('sign-up-form.header')}
+      </h1>
 
       <Messages ref={errorMessage} />
+      <Messages ref={googleErrorMessage} />
 
       <div className="field">
         <label htmlFor="email">{t('email')}</label>
@@ -90,7 +108,19 @@ export default function SignUp() {
         <small className="p-error">{confirmPasswordError}</small>
       </div>
 
-      <Button type="submit" label={t('submit-button')!} />
+      <div className="flex flex-column gap-3">
+        <Button type="submit" label={t('sign-up-form.submit-button')!} />
+        <Divider className="m-0" align="center">
+          <span>{t('sign-up-form.divider')}</span>
+        </Divider>
+        <GoogleButton onSuccess={googleSubmit} />
+        <div className="flex align-self-center gap-1">
+          <span>{t('sign-up-form.hint')}</span>
+          <TextLink path={PagePath.LOGIN}>
+            {t('sign-up-form.hint-link')!}
+          </TextLink>
+        </div>
+      </div>
     </form>
   );
 }

@@ -1,7 +1,7 @@
+import { AccessTokenResponse, ErrorResponse } from '@/redux/api/types';
 import { resetAuth, setAccessToken } from '@/redux/slices/authSlice';
 import { RootState } from '@/redux/store';
 import { ApiEndpoint, Exception } from '@/structures/enums';
-import { AccessTokenResponse, ResponseError } from '@/structures/types';
 import {
   BaseQueryApi,
   createApi,
@@ -9,6 +9,9 @@ import {
 } from '@reduxjs/toolkit/query/react';
 
 type ApiBaseQueryType = ReturnType<typeof fetchBaseQuery>;
+
+const CSRF_TOKEN_ENDPOINT = `${ApiEndpoint.AUTH}/csrf-token`;
+const REFRESH_TOKENS_ENDPOINT = `${ApiEndpoint.AUTH}/refresh-token/refresh-tokens`;
 
 const CSRF_HEADER = 'csrf-token';
 const AUTH_HEADER = 'Authorization';
@@ -30,7 +33,7 @@ const baseQueryWithPrepareHeaders = fetchBaseQuery({
   prepareHeaders: async (headers, api) => {
     if (api.type == MUTATION) {
       const csrfTokenResponse = await commonBaseQuery(
-        ApiEndpoint.CSRF_TOKEN,
+        CSRF_TOKEN_ENDPOINT,
         api as BaseQueryApi,
         {}
       );
@@ -54,10 +57,10 @@ const baseQueryWithReAuth: ApiBaseQueryType = async (
   let response = await baseQueryWithPrepareHeaders(args, api, extraOptions);
 
   if (response.error) {
-    const message = (response.error as ResponseError).data.message;
+    const message = (response.error as ErrorResponse).data.message;
     if (message == Exception.JWT_ACCESS_TOKEN_EXPIRATION) {
       const refreshResult = await commonBaseQuery(
-        ApiEndpoint.REFRESH_TOKENS,
+        REFRESH_TOKENS_ENDPOINT,
         api,
         extraOptions
       );

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 type UserTableHeaderProps = {
   searchValue: string;
-  onSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onSearchChange: (search: string | undefined) => void;
 };
 
 export default function UserTableHeader({
@@ -13,6 +13,10 @@ export default function UserTableHeader({
 }: UserTableHeaderProps) {
   const [t] = useTranslation('translation', { keyPrefix: 'user.table.header' });
 
+  const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onSearchChange(event.target.value);
+  };
+
   return (
     <div className="flex justify-content-end align-items-center">
       <div className="flex gap-2">
@@ -20,7 +24,7 @@ export default function UserTableHeader({
           <i className="pi pi-search" />
           <InputText
             value={searchValue}
-            onChange={onSearchChange}
+            onChange={handleSearchInputChange}
             placeholder={t('search-input')!}
           />
         </span>

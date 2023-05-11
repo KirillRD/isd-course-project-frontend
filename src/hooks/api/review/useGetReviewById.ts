@@ -1,16 +1,9 @@
-import useCheckExists from '@/hooks/useCheckExists';
 import { useGetReviewByIdQuery } from '@/redux/api/reviewApi';
-import { ResponseError } from '@/structures/types';
-import { useEffect } from 'react';
 
 export default function useGetReviewById(id: number) {
-  const { data, refetch, error } = useGetReviewByIdQuery(id);
+  const { data, error } = useGetReviewByIdQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
 
-  useEffect(() => {
-    void refetch();
-  }, []);
-
-  useCheckExists(error as ResponseError);
-
-  return { review: data };
+  return { review: data, error };
 }

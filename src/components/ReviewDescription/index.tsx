@@ -1,6 +1,6 @@
-import ReviewLike from '@/components/ReviewLike';
+import ReviewLikeAction from '@/components/ReviewLikeAction';
 import Card from '@/components/ui/Card';
-import GardeBadge from '@/components/ui/GradeBadge';
+import GradeBadge from '@/components/ui/GradeBadge';
 import ReviewTagEnumeration from '@/components/ui/ReviewTagEnumeration';
 import { Review } from '@/structures/types';
 import { getFormattedDate } from '@/utils';
@@ -23,7 +23,7 @@ export default function ReviewDescription({ review }: ReviewProps) {
         <UserBasicData user={review.user!} />
         <div className="flex align-items-center gap-2">
           <span>{t('grade')!}:</span>
-          <GardeBadge grade={review.grade} />
+          <GradeBadge grade={review.grade} />
         </div>
       </div>
       <h2 className="my-1">{review.title}</h2>
@@ -36,7 +36,10 @@ export default function ReviewDescription({ review }: ReviewProps) {
           <span>{getFormattedDate(review.createDate)}</span>
         </div>
         <div className="flex align-items-center gap-2">
-          <ReviewLike reviewId={review.id} userLike={review.userLike} />
+          <ReviewLikeAction
+            reviewId={review.id}
+            userLike={!!review.userLikes?.length}
+          />
           <span>{review._count?.userLikes}</span>
         </div>
       </div>

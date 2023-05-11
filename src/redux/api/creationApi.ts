@@ -11,6 +11,7 @@ export type CreateCreationBody = {
   title: string;
   description: string;
   category: CreationCategory;
+  imageFile: string;
 };
 
 const creationApi = api.injectEndpoints({

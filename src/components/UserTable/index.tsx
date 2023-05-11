@@ -20,9 +20,9 @@ export default function UserTable() {
     userCount,
     pageSize,
     firstRowIndex,
+    handlePage,
     searchValue,
     handleSearchChange,
-    handlePage,
   } = useUserTable();
 
   const imageTemplate = (user: User) => {
@@ -98,7 +98,7 @@ export default function UserTable() {
         />
         <Column
           className={styles.likeCount}
-          field=""
+          field="_count.reviewLikes"
           header={t('like-count')}
         />
         <Column

@@ -13,9 +13,14 @@ type ItemTemplate = {
   state: AutocompleteState<any>;
 };
 
-export default function FullTextSearch() {
+type FullTextSearchProps = {
+  className?: string;
+};
+
+export default function FullTextSearch({ className }: FullTextSearchProps) {
   return (
     <AlgoliaAutocomplete
+      className={className}
       getSources={({ query }) => [
         {
           sourceId: 'objectID',

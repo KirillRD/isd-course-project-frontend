@@ -1,4 +1,5 @@
 import useGetReviewById from '@/hooks/api/review/useGetReviewById';
+import useCheckExists from '@/hooks/useCheckExists';
 import { useAppSelector } from '@/hooks/useRedux';
 import { PagePath, Role } from '@/structures/enums';
 import { Review } from '@/structures/types';
@@ -10,7 +11,8 @@ export default function useReviewUpdate() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { review } = useGetReviewById(Number(params.reviewId));
+  const { review, error } = useGetReviewById(Number(params.reviewId));
+  useCheckExists(error);
 
   useEffect(() => {
     if (review) {

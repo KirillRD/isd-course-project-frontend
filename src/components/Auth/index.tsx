@@ -1,6 +1,6 @@
 import { useAppSelector } from '@/hooks/useRedux';
 import { PagePath, Role } from '@/structures/enums';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 type AuthProps = {
   allowedRoles: Role[];
@@ -8,10 +8,11 @@ type AuthProps = {
 
 export default function Auth({ allowedRoles }: AuthProps) {
   const authUser = useAppSelector((state) => state.authUser.user);
+  const location = useLocation();
 
   const getPageIfUserNotExist = () => {
     return allowedRoles.length ? (
-      <Navigate to={PagePath.LOGIN} replace />
+      <Navigate to={PagePath.LOGIN} state={{ from: location }} replace />
     ) : (
       <Outlet />
     );

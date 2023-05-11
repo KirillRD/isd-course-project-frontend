@@ -33,8 +33,8 @@ export type UpdateReviewBody = {
 };
 
 export const reviewOrderOptions = [
-  'review-create-date-asc',
   'review-create-date-desc',
+  'review-create-date-asc',
   'review-title-asc',
   'review-title-desc',
   'review-grade-asc',

@@ -1,48 +1,64 @@
 import api from '@/redux/api';
+import { AccessTokenResponse } from '@/redux/api/types';
 import { ApiEndpoint } from '@/structures/enums';
-import {
-  AccessTokenResponse,
-  LoginData,
-  SignUpData,
-  User,
-} from '@/structures/types';
+import { User } from '@/structures/types';
 import { HttpMethod } from 'http-enums';
 
-type SignUpRequest = {
+export enum AuthEndpoint {
+  SIGN_UP = '/sign-up',
+  LOGIN = '/login',
+  GOOGLE_LOGIN = '/google-login',
+  LOGOUT = '/refresh-token/logout',
+  PROFILE = '/profile',
+}
+
+export type SignUpBody = {
   email: string;
   name: string;
   password: string;
 };
 
+export type LoginBody = {
+  email: string;
+  password: string;
+};
+
+export type CredentialBody = {
+  credential: string;
+};
+
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    signUp: builder.mutation<AccessTokenResponse, SignUpRequest>({
-      query: (body: SignUpData) => ({
-        url: ApiEndpoint.SIGN_UP,
+    signUp: builder.mutation<AccessTokenResponse, SignUpBody>({
+      query: (body: SignUpBody) => ({
+        url: `${ApiEndpoint.AUTH}${AuthEndpoint.SIGN_UP}`,
         method: HttpMethod.POST,
-        body: {
-          email: body.email,
-          name: body.name,
-          password: body.password,
-        },
+        body,
       }),
     }),
-    login: builder.mutation<AccessTokenResponse, LoginData>({
-      query: (body: LoginData) => ({
-        url: ApiEndpoint.LOGIN,
+    login: builder.mutation<AccessTokenResponse, LoginBody>({
+      query: (body: LoginBody) => ({
+        url: `${ApiEndpoint.AUTH}${AuthEndpoint.LOGIN}`,
+        method: HttpMethod.POST,
+        body,
+      }),
+    }),
+    googleLogin: builder.mutation<AccessTokenResponse, CredentialBody>({
+      query: (body: CredentialBody) => ({
+        url: `${ApiEndpoint.AUTH}${AuthEndpoint.GOOGLE_LOGIN}`,
         method: HttpMethod.POST,
         body,
       }),
     }),
     logout: builder.mutation<void, void>({
       query: () => ({
-        url: ApiEndpoint.LOGOUT,
+        url: `${ApiEndpoint.AUTH}${AuthEndpoint.LOGOUT}`,
         method: HttpMethod.POST,
       }),
     }),
     getProfile: builder.query<User, void>({
       query: () => ({
-        url: ApiEndpoint.PROFILE,
+        url: `${ApiEndpoint.AUTH}${AuthEndpoint.PROFILE}`,
       }),
       providesTags: ['AuthUser'],
     }),
@@ -52,6 +68,7 @@ const authApi = api.injectEndpoints({
 export const {
   useSignUpMutation,
   useLoginMutation,
+  useGoogleLoginMutation,
   useLogoutMutation,
   useGetProfileQuery,
 } = authApi;

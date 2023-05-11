@@ -9,13 +9,7 @@ export type ReviewCommentFormBody = {
   comment: string;
 };
 
-type ReviewCommentFormProps = {
-  className?: string;
-};
-
-export default function ReviewCommentForm({
-  className,
-}: ReviewCommentFormProps) {
+export default function ReviewCommentForm() {
   const [t] = useTranslation('translation', { keyPrefix: 'review-comment' });
   const { submit } = useSubmit();
   const {
@@ -27,10 +21,7 @@ export default function ReviewCommentForm({
   } = useReviewCommentForm(submit);
 
   return (
-    <form
-      className={`flex flex-column p-fluid ${className!}`}
-      onSubmit={handleSubmit}
-    >
+    <form className="flex flex-column p-fluid" onSubmit={handleSubmit}>
       <div className="field">
         <InputTextarea
           className={classNames({ 'p-invalid': isCommentError })}

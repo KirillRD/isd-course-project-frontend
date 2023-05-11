@@ -1,11 +1,11 @@
 import { GetTagsParams, useGetTagsQuery } from '@/redux/api/tagApi';
 
 type UseGetTagsArgs = {
-  stop?: boolean;
   params?: GetTagsParams;
+  stop?: boolean;
 };
 
-export default function useGetTags({ stop, params }: UseGetTagsArgs) {
+export default function useGetTags({ params, stop }: UseGetTagsArgs) {
   const { data } = useGetTagsQuery(params!, {
     skip: stop ?? !params?.search,
   });

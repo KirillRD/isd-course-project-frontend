@@ -27,12 +27,7 @@ export default function EditUserDialog({
   };
 
   return (
-    <Dialog
-      className="col-2"
-      visible={visible}
-      onHide={onHide}
-      header={t('header')}
-    >
+    <Dialog visible={visible} onHide={onHide} header={t('header')}>
       <EditUserForm user={user} onSubmit={handleSubmit} onHide={onHide} />
     </Dialog>
   );

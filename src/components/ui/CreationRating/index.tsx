@@ -1,3 +1,5 @@
+import RatingIcon from '@/components/ui/RatingIcon';
+
 type CreationRatingProps = {
   averageRating: number;
 };
@@ -5,7 +7,7 @@ type CreationRatingProps = {
 export default function CreationRating({ averageRating }: CreationRatingProps) {
   return (
     <div className="flex align-items-center gap-2">
-      <span className="pi pi-star-fill text-primary"></span>
+      <RatingIcon colored fill />
       <span>{averageRating?.toFixed(1)}</span>
     </div>
   );

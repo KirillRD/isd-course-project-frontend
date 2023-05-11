@@ -1,5 +1,5 @@
 import { ReviewFormBody } from '@/components/ReviewForm';
-import { MAX_GARDE, MIN_GRADE } from '@/utils/constants';
+import { MAX_GRADE, MIN_GRADE } from '@/utils/constants';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { ObjectSchema, array, number, object, string } from 'yup';
@@ -10,7 +10,7 @@ const reviewFormValidationSchema: ObjectSchema<ReviewFormBody> = object({
   grade: number()
     .required('grade.required')
     .min(MIN_GRADE, 'grade.min')
-    .max(MAX_GARDE, 'grade.max')
+    .max(MAX_GRADE, 'grade.max')
     .integer('grade.format'),
   tags: array()
     .of(
@@ -65,7 +65,7 @@ export default function useReviewForm(
 
     gradeValue: formik.values.grade,
     isGradeError,
-    gardeError: isGradeError && t(formik.errors.grade!),
+    gradeError: isGradeError && t(formik.errors.grade!),
 
     tagsValue: formik.values.tags,
     isTagsError,

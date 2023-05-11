@@ -4,7 +4,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import { AutoComplete } from 'primereact/autocomplete';
 import {
   GRADE_STEP,
-  MAX_GARDE,
+  MAX_GRADE,
   MAX_IMAGE_SIZE,
   MIN_GRADE,
 } from '@/utils/constants';
@@ -50,7 +50,7 @@ export default function ReviewForm({
     bodyError,
     gradeValue,
     isGradeError,
-    gardeError,
+    gradeError,
     tagsValue,
     isTagsError,
     tagsError,
@@ -69,11 +69,15 @@ export default function ReviewForm({
     void setFieldValue('body', event.htmlValue);
   };
 
+  const translatePagePrefix = reviewFormBody ? 'edit-form' : 'add-form';
+
   return (
     <form
       className="flex flex-column p-fluid p-4 surface-card border-round border-1 surface-border"
       onSubmit={handleSubmit}
     >
+      <h2 className="mt-0">{t(`${translatePagePrefix}.header`)}</h2>
+
       <div className="field">
         <label htmlFor="title">{t('title')}</label>
         <InputText
@@ -97,7 +101,7 @@ export default function ReviewForm({
         <small className="p-error">{bodyError}</small>
       </div>
 
-      <div className="field">
+      <div className="field w-9rem">
         <label htmlFor="grade">{t('grade')}</label>
         <InputNumber
           className={classNames({ 'p-invalid': isGradeError })}
@@ -105,14 +109,14 @@ export default function ReviewForm({
           value={gradeValue}
           onValueChange={handleChange}
           min={MIN_GRADE}
-          max={MAX_GARDE}
+          max={MAX_GRADE}
           step={GRADE_STEP}
           showButtons
           buttonLayout="horizontal"
           incrementButtonIcon="pi pi-plus"
           decrementButtonIcon="pi pi-minus"
         />
-        <small className="p-error">{gardeError}</small>
+        <small className="p-error">{gradeError}</small>
       </div>
 
       <div className="field">
@@ -146,7 +150,11 @@ export default function ReviewForm({
         />
       </div>
 
-      <Button type="submit" label={t('add-form.submit-button')!} />
+      <Button
+        className="w-9rem align-self-end"
+        type="submit"
+        label={t(`${translatePagePrefix}.submit-button`)!}
+      />
     </form>
   );
 }

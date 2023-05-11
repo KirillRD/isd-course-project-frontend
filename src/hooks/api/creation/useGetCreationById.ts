@@ -1,16 +1,18 @@
-import useCheckExists from '@/hooks/useCheckExists';
 import { useGetCreationByIdQuery } from '@/redux/api/creationApi';
-import { ResponseError } from '@/structures/types';
-import { useEffect } from 'react';
 
-export default function useGetCreationById(id: number) {
-  const { data, refetch, error } = useGetCreationByIdQuery(id);
+type CseGetCreationByIdArgs = {
+  id: number;
+  stop?: boolean;
+};
 
-  useEffect(() => {
-    void refetch();
-  }, []);
+export default function useGetCreationById({
+  id,
+  stop,
+}: CseGetCreationByIdArgs) {
+  const { data, error } = useGetCreationByIdQuery(id, {
+    skip: stop,
+    refetchOnMountOrArgChange: true,
+  });
 
-  useCheckExists(error as ResponseError);
-
-  return { creation: data };
+  return { creation: data, error };
 }

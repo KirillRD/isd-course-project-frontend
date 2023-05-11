@@ -32,18 +32,27 @@ export default function useReviewList() {
     });
   };
 
-  const handleCreationChange = (creation: number | undefined) => {
-    setParams({
-      ...reviewsParams,
-      creation,
-    });
+  const handleCreationChange = (
+    creation: number | undefined,
+    replace?: boolean
+  ) => {
+    setParams(
+      {
+        ...reviewsParams,
+        creation,
+      },
+      replace
+    );
   };
 
-  const handleTagsChange = (tags: number[] | undefined) => {
-    setParams({
-      ...reviewsParams,
-      tag: tags,
-    });
+  const handleTagsChange = (tags: number[] | undefined, replace?: boolean) => {
+    setParams(
+      {
+        ...reviewsParams,
+        tag: tags,
+      },
+      replace
+    );
   };
 
   const handleCreationCategoriesChange = (

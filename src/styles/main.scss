@@ -1,3 +1,15 @@
 html {
-  font-size: 14px;
+  font-size: 12px;
+}
+
+@media (min-width: $sm) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: $lg) {
+  html {
+    font-size: 14px;
+  }
 }

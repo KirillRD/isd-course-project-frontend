@@ -18,10 +18,7 @@ export default function CreationListItem({ creation }: CreationListItemProps) {
   return (
     <div className="w-full flex gap-2">
       <div className={styles.image}>
-        <ImageLink
-          path={`../${creation.id}`}
-          imageUrl="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg"
-        />
+        <ImageLink path={`../${creation.id}`} imageUrl={creation.imageUrl} />
       </div>
       <div className="flex flex-column align-items-start gap-3 p-3">
         <TextLink path={`../${creation.id}`} selection>

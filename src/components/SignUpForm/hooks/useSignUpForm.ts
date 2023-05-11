@@ -1,12 +1,9 @@
-import { useRef } from 'react';
-import useSignUp from '@/components/SignUpForm/hooks/useSignUp';
-import { SignUpData } from '@/structures/types';
 import { useFormik } from 'formik';
-import { Messages } from 'primereact/messages';
 import { useTranslation } from 'react-i18next';
 import { ObjectSchema, object, ref, string } from 'yup';
+import { SignUpFormBody } from '@/components/SignUpForm';
 
-const signUpValidationSchema: ObjectSchema<SignUpData> = object({
+const signUpValidationSchema: ObjectSchema<SignUpFormBody> = object({
   email: string()
     .email('email.format')
     .required('email.required')
@@ -18,12 +15,12 @@ const signUpValidationSchema: ObjectSchema<SignUpData> = object({
     .oneOf([ref('password')], 'confirm-password.format'),
 });
 
-export default function useSignUpForm() {
-  const [t] = useTranslation('translation', { keyPrefix: 'validation' });
-  const errorMessage = useRef<Messages>(null);
-  const { signUp } = useSignUp(errorMessage);
+export default function useSignUpForm(
+  submit: (values: SignUpFormBody) => void
+) {
+  const [t] = useTranslation('translation', { keyPrefix: 'validation.user' });
 
-  const formik = useFormik<SignUpData>({
+  const formik = useFormik<SignUpFormBody>({
     initialValues: {
       email: '',
       name: '',
@@ -31,8 +28,8 @@ export default function useSignUpForm() {
       confirmPassword: '',
     },
     validationSchema: signUpValidationSchema,
-    onSubmit: (values: SignUpData) => {
-      signUp(values);
+    onSubmit: (values: SignUpFormBody) => {
+      submit(values);
     },
   });
 
@@ -58,6 +55,5 @@ export default function useSignUpForm() {
     isConfirmPasswordError,
     confirmPasswordError:
       isConfirmPasswordError && t(formik.errors.confirmPassword!),
-    errorMessage,
   };
 }

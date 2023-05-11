@@ -5,8 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { getFormattedDate } from '@/utils';
 import styles from './styles.module.scss';
 import CreationCategoryTag from '@/components/ui/CreationCategoryTag';
-import ImageContainer from '@/components/ui/ImageContainer';
-import GardeBadge from '@/components/ui/GradeBadge';
+import GradeTag from '@/components/ui/GradeBadge';
 import CreationCategoryFilter from '@/components/ReviewTable/components/CreationCategoryFilter';
 import CreateDateFilter from '@/components/ReviewTable/components/CreateDateFilter';
 import GradeFilter from '@/components/ReviewTable/components/GradeFilter';
@@ -15,6 +14,8 @@ import ReviewTableHeader from '@/components/ReviewTable/components/ReviewTableHe
 import TextLink from '@/components/ui/TextLink';
 import { PagePath } from '@/structures/enums';
 import ReviewActions from '@/components/ReviewTable/components/ReviewActions';
+import ImageLink from '@/components/ui/ImageLink';
+import { CREATION_ARG } from '@/utils/reviewSearchParams';
 
 type ReviewTableProps = {
   reviews: Review[];
@@ -33,9 +34,13 @@ export default function ReviewTable({ reviews }: ReviewTableProps) {
   const { filters, globalFilterValue, handleGlobalFilterChange, clearFilters } =
     useFilters();
 
-  const imageTemplate = (review: Review) => {
+  const creationImageTemplate = (review: Review) => {
     return (
-      <ImageContainer url="https://www.bridgeway.co.nz/template_1/img/default-movie-portrait.jpg" />
+      <ImageLink
+        path={PagePath.REVIEWS}
+        args={{ [CREATION_ARG]: `${review.creation!.id}` }}
+        imageUrl={review.creation!.imageUrl}
+      />
     );
   };
 
@@ -43,6 +48,18 @@ export default function ReviewTable({ reviews }: ReviewTableProps) {
     return (
       <TextLink path={`${PagePath.REVIEWS}/${review.id}`} selection>
         {review.title}
+      </TextLink>
+    );
+  };
+
+  const creationTitleTemplate = (review: Review) => {
+    return (
+      <TextLink
+        path={PagePath.REVIEWS}
+        args={{ [CREATION_ARG]: `${review.creation!.id}` }}
+        selection
+      >
+        {review.creation!.title}
       </TextLink>
     );
   };
@@ -56,11 +73,11 @@ export default function ReviewTable({ reviews }: ReviewTableProps) {
   };
 
   const gradeTemplate = (review: Review) => {
-    return <GardeBadge grade={review.grade} />;
+    return <GradeTag grade={review.grade} />;
   };
 
   const actionsTemplate = (review: Review) => {
-    return <ReviewActions reviewId={review.id} />;
+    return <ReviewActions review={review} />;
   };
 
   const creationCategoryFilterTemplate = (
@@ -108,7 +125,7 @@ export default function ReviewTable({ reviews }: ReviewTableProps) {
         <Column
           className={styles.creationImage}
           header={t('table.creation-image')}
-          body={imageTemplate}
+          body={creationImageTemplate}
           alignHeader="center"
         />
         <Column
@@ -124,6 +141,7 @@ export default function ReviewTable({ reviews }: ReviewTableProps) {
           className={styles.creation}
           field="creation.title"
           header={t('creation')}
+          body={creationTitleTemplate}
           sortable
           filter
           filterPlaceholder={t('creation')!}

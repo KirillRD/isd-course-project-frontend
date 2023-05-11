@@ -5,7 +5,7 @@ export default function UserPage() {
   const params = useParams();
 
   return (
-    <div className="col-10">
+    <div className="xl:col-9 col-12">
       <UserProfile userId={Number(params.userId)} />
     </div>
   );

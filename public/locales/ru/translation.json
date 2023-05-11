@@ -1,5 +1,4 @@
 {
-  "title": "Привет мир!",
   "language": {
     "en": "Англ",
     "ru": "Рус"
@@ -9,24 +8,26 @@
     "dark": "Тёмная"
   },
   "validation": {
-    "email": {
-      "required": "Почта обязательна",
-      "format": "Неправильная почта, пример 'user@gmail.com'",
-      "length": "Длина почты должна быть меньше 50"
-    },
-    "name": {
-      "required": "Имя обязательно",
-      "length": "Длина имени должна быть меньше 100"
-    },
-    "password": {
-      "required": "Пароль обязателен"
-    },
-    "confirm-password": {
-      "required": "Подтверждение пароля обязательно",
-      "format": "Пароль и подтверждение пароля должны совпадать"
-    },
-    "roles": {
-      "length": "Пользователь должен содержать хотя бы одну роль"
+    "user": {
+      "email": {
+        "required": "Почта обязательна",
+        "format": "Неправильная почта, пример 'user@gmail.com'",
+        "length": "Длина почты должна быть меньше 50"
+      },
+      "name": {
+        "required": "Имя обязательно",
+        "length": "Длина имени должна быть меньше 100"
+      },
+      "password": {
+        "required": "Пароль обязателен"
+      },
+      "confirm-password": {
+        "required": "Подтверждение пароля обязательно",
+        "format": "Пароль и подтверждение пароля должны совпадать"
+      },
+      "roles": {
+        "length": "Пользователь должен содержать хотя бы одну роль"
+      }
     },
     "review": {
       "title": {
@@ -59,6 +60,9 @@
       "description": {
         "required": "Описание обязательно",
         "length": "Длина описания должна быть меньше 1000"
+      },
+      "image": {
+        "required": "Изображение обязательно"
       }
     },
     "review-comment": {
@@ -72,7 +76,14 @@
     "USER_EMAIL_EXISTS": "Почта уже существует",
     "USER_CREDENTIAL_INVALID": "Неверные почта или пароль",
     "USER_IS_LOCK": "Ваш аккаунт заблокирован",
-    "CREATION_TITLE_AND_CATEGORY_EXISTS": "Творение с таким заголовком и категорией уже существует"
+    "CREATION_TITLE_AND_CATEGORY_EXISTS": "Творение с таким заголовком и категорией уже существует",
+    "USER_INVALID_AUTH_TYPE": "Пользователь с такой почтой зарегистрирован иным образом. Попробуйте другой способ входа"
+  },
+  "not-found": {
+    "message": "Страница не найдена"
+  },
+  "access-denied": {
+    "message": "Доступ запрещён"
   },
   "role": {
     "USER": "ПОЛЬЗ.",
@@ -86,27 +97,27 @@
     "GAMES": "ИГРЫ"
   },
   "navbar": {
-    "login-page": "Вход",
-    "sign-up-page": "Регистрация",
+    "login-page": "Войти",
     "home-page": "Главная",
-    "review-catalog-page": "Каталог отзывов",
-    "users-page": "Пользователи"
-  },
-  "login-form": {
-    "header": "Вход",
-    "email": "Почта",
-    "password": "Пароль",
-    "submit-button": "Войти"
-  },
-  "sign-up-form": {
-    "header": "Регистрация",
-    "email": "Почта",
-    "name": "Имя",
-    "password": "Пароль",
-    "confirm-password": "Подтверждение пароля",
-    "submit-button": "Зарегистрироваться"
+    "review-catalog-page": "Каталог обзоров",
+    "users-page": "Пользователи",
+    "add-review": "Добавить обзор"
   },
   "user": {
+    "login-form": {
+      "header": "Вход",
+      "submit-button": "Войти",
+      "hint": "У вас нет аккаунта?",
+      "hint-link": "Зарегистрироваться",
+      "divider": "ИЛИ"
+    },
+    "sign-up-form": {
+      "header": "Регистрация",
+      "submit-button": "Зарегистрироваться",
+      "hint": "Уже есть аккаунт?",
+      "hint-link": "Войти",
+      "divider": "ИЛИ"
+    },
     "table": {
       "title": "Пользователи",
       "header": {
@@ -128,6 +139,8 @@
     },
     "email": "Почта",
     "name": "Имя",
+    "password": "Пароль",
+    "confirm-password": "Подтверждение пароля",
     "review-count": "Кол-во обзоров",
     "like-count": "Кол-во лайков",
     "sign-up-date": "Дата регистрации",
@@ -138,12 +151,14 @@
   "review": {
     "list": {
       "create-date-desc": {
-        "title": "Последние добавленные обзоры"
+        "title": "Последние добавленные обзоры",
+        "link": "Смотреть все обзоры"
       },
       "grade-desc": {
-        "title": "Обзоры с самыми большими оценками"
+        "title": "Обзоры с самыми большими оценками",
+        "link": "Смотреть все обзоры"
       },
-      "title": "Каталог отзывов",
+      "title": "Каталог обзоров",
       "header": {
         "review": "Название обзора",
         "creation": "Творение",
@@ -151,28 +166,39 @@
         "tags": "Теги",
         "order": "Сортировка",
         "order-options": {
-          "review-create-date-asc": "Review create date asc",
-          "review-create-date-desc": "Review create date desc",
-          "review-title-asc": "Review title asc",
-          "review-title-desc": "Review title desc",
-          "review-grade-asc": "Review grade asc",
-          "review-grade-desc": "Review grade desc"
+          "review-create-date-asc": "Дата обзора ↑",
+          "review-create-date-desc": "Дата обзора ↓",
+          "review-title-asc": "Название обзора A-Я",
+          "review-title-desc": "Название обзора Я-А",
+          "review-grade-asc": "Оценка 0-10",
+          "review-grade-desc": "Оценка 10-0"
         }
       }
+    },
+    "item": {
+      "reviews": "Смотреть все обзоры"
     },
     "table": {
       "title": "Обзоры",
       "header": {
-        "add-review-button": "Добавить",
+        "add-review-button": "Добавить обзор",
         "clear-filters-button": "Очистить",
         "global-search-input": "Поиск"
       },
       "creation-image": "Изображение творения",
       "creation-category": "Категория"
     },
+    "delete-dialog": {
+      "header": "Удаление обзора",
+      "message": "Вы уверены, что хотите удалить этот обзор?"
+    },
     "add-form": {
       "header": "Добавление обзора",
       "submit-button": "Добавить"
+    },
+    "edit-form": {
+      "header": "Редактирование обзора",
+      "submit-button": "Сохранить"
     },
     "title": "Название обзора",
     "body": "Обзор",
@@ -196,6 +222,9 @@
         "creation-link": "Подробнее"
       }
     },
+    "item": {
+      "reviews": "Смотреть все обзоры"
+    },
     "add-form" : {
       "header": "Добавление творения",
       "category-placeholder": "Категория творения",
@@ -203,7 +232,8 @@
     },
     "title": "Заголовок",
     "category": "Категория",
-    "description": "Описание"
+    "description": "Описание",
+    "image": "Изображение"
   },
   "review-comment": {
     "block": {

@@ -13,9 +13,9 @@ type ReviewListHeaderProps = {
   reviewValue: string | undefined;
   onReviewChange: (review: string | undefined) => void;
   creationValue: number | undefined;
-  onCreationChange: (creation: number | undefined) => void;
+  onCreationChange: (creation: number | undefined, replace?: boolean) => void;
   tagsValue: number[] | undefined;
-  onTagsChange: (tags: number[] | undefined) => void;
+  onTagsChange: (tags: number[] | undefined, replace?: boolean) => void;
   creationCategoriesValue: CreationCategory[] | undefined;
   onCreationCategoriesChange: (
     creationCategories: CreationCategory[] | undefined
@@ -40,7 +40,7 @@ export default function ReviewListHeader({
 
   return (
     <div className="grid p-fluid">
-      <div className="col-6">
+      <div className="md:col-6 col-12">
         <div className="field m-0">
           <label htmlFor="creation">{t('creation')}</label>
           <CreationAutoComplete
@@ -50,7 +50,7 @@ export default function ReviewListHeader({
           />
         </div>
       </div>
-      <div className="col-6">
+      <div className="md:col-6 col-12">
         <div className="field m-0">
           <label htmlFor="review">{t('review')}</label>
           <ReviewInputText
@@ -60,7 +60,7 @@ export default function ReviewListHeader({
           />
         </div>
       </div>
-      <div className="col-5">
+      <div className="md:col-4 col-12">
         <div className="field m-0">
           <label htmlFor="creation-categories">
             {t('creation-categories')}
@@ -72,7 +72,7 @@ export default function ReviewListHeader({
           />
         </div>
       </div>
-      <div className="col-5">
+      <div className="md:col-5 col-12">
         <div className="field m-0">
           <label htmlFor="tags">{t('tags')}</label>
           <TagMultiselect
@@ -82,7 +82,7 @@ export default function ReviewListHeader({
           />
         </div>
       </div>
-      <div className="col-2">
+      <div className="md:col-3 col-12">
         <div className="field m-0">
           <label htmlFor="order">{t('order')}</label>
           <ReviewOrderDropdown

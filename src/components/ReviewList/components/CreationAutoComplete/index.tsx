@@ -1,3 +1,4 @@
+import useCreationValue from '@/components/ReviewList/components/CreationAutoComplete/hooks/useCreationValue';
 import useGetCreations from '@/hooks/api/creation/useGetCreations';
 import { Creation } from '@/structures/types';
 import {
@@ -6,12 +7,12 @@ import {
   AutoCompleteCompleteEvent,
   AutoCompleteSelectEvent,
 } from 'primereact/autocomplete';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type CreationAutoCompleteProps = {
   inputId: string;
   value: number | undefined;
-  onChange: (creation: number | undefined) => void;
+  onChange: (creation: number | undefined, replace?: boolean) => void;
 };
 
 export default function CreationAutoComplete({
@@ -19,8 +20,13 @@ export default function CreationAutoComplete({
   value,
   onChange,
 }: CreationAutoCompleteProps) {
+  const { creation } = useCreationValue(value, onChange);
   const { creations, setSearchParams } = useGetCreations(false);
   const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
+
+  useEffect(() => {
+    setSelectedTitle(creation ? creation.title : null);
+  }, [creation]);
 
   const handleChange = (event: AutoCompleteChangeEvent) => {
     if (event.value === null) {

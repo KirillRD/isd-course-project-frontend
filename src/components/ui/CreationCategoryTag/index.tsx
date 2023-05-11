@@ -7,12 +7,12 @@ type CreationCategoryTagProps = {
   className?: string;
 };
 
-export enum CreationCategoryColor {
-  MOVIES = 'bg-blue-300',
-  TV = 'bg-yellow-300',
-  BOOKS = 'bg-green-300',
-  MUSIC = 'bg-purple-300',
-  GAMES = 'bg-red-300',
+enum CreationCategoryColor {
+  MOVIES = 'bg-blue-400',
+  TV = 'bg-yellow-400',
+  BOOKS = 'bg-green-400',
+  MUSIC = 'bg-purple-400',
+  GAMES = 'bg-red-400',
 }
 
 export default function CreationCategoryTag({

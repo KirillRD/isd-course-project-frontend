@@ -1,6 +1,6 @@
 export enum Theme {
-  LIGHT = '/themes/saga-blue/theme.css',
-  DARK = '/themes/arya-blue/theme.css',
+  LIGHT = 'LIGHT',
+  DARK = 'DARK',
 }
 
 export enum Language {
@@ -21,18 +21,11 @@ export enum PagePath {
   SELECT = '/select',
   CREATIONS = '/creations',
   REVIEWS = '/reviews',
-
   ANY = '*',
 }
 
 export enum ApiEndpoint {
-  SIGN_UP = 'auth/sign-up',
-  LOGIN = 'auth/login',
-  LOGOUT = 'auth/refresh-token/logout',
-  PROFILE = 'auth/profile',
-  CSRF_TOKEN = 'auth/csrf-token',
-  REFRESH_TOKENS = 'auth/refresh-token/refresh-tokens',
-
+  AUTH = 'auth',
   USERS = 'users',
   CREATIONS = 'creations',
   REVIEWS = 'reviews',
@@ -45,11 +38,6 @@ export enum ApiEndpoint {
 export enum Role {
   USER = 'USER',
   ADMIN = 'ADMIN',
-}
-
-export enum RoleColor {
-  USER = 'bg-gray-300',
-  ADMIN = 'bg-red-300',
 }
 
 export enum CreationCategory {
@@ -65,10 +53,17 @@ export enum Exception {
   USER_CREDENTIAL_INVALID = 'USER_CREDENTIAL_INVALID',
   USER_IS_LOCK = 'USER_IS_LOCK',
   USER_ROLE_ACCESS_DENIED = 'USER_ROLE_ACCESS_DENIED',
+  USER_EMAIL_FORMAT = 'USER_EMAIL_FORMAT',
+  USER_PASSWORD_IS_EMPTY = 'USER_PASSWORD_IS_EMPTY',
+  USER_PASSWORD_CONTAINS_SPACES = 'USER_PASSWORD_CONTAINS_SPACES',
+  USER_INVALID_AUTH_TYPE = 'USER_INVALID_AUTH_TYPE',
 
   CREATION_TITLE_AND_CATEGORY_EXISTS = 'CREATION_TITLE_AND_CATEGORY_EXISTS',
 
   REVIEW_GRADE_INVALID_FORMAT = 'REVIEW_GRADE_INVALID_FORMAT',
+
+  IMAGE_UPLOAD = 'IMAGE_UPLOAD',
+  IMAGES_DELETE = 'IMAGES_DELETE',
 
   JWT_ACCESS_TOKEN_EXPIRATION = 'JWT_ACCESS_TOKEN_EXPIRATION',
   JWT_ACCESS_TOKEN_INVALID = 'JWT_ACCESS_TOKEN_INVALID',

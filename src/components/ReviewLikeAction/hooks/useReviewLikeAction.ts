@@ -3,9 +3,9 @@ import useDeleteLike from '@/hooks/api/like/useDeleteLike';
 import useCheckAuthUser from '@/hooks/useCheckAuthUser';
 import { LikeBody } from '@/redux/api/likeApi';
 
-export default function useReviewLike(
+export default function useReviewLikeAction(
   reviewId: number,
-  userLike: boolean | undefined
+  userLike: boolean
 ) {
   const { createLike } = useCreateLike();
   const { deleteLike } = useDeleteLike();

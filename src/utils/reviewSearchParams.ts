@@ -5,17 +5,16 @@ import {
   GetReviewsParams,
 } from '@/redux/api/reviewApi';
 import { CreationCategory } from '@/structures/enums';
+import { POSITIVE_INTEGER_REGEX } from '@/utils/constants';
 import queryString from 'query-string';
 
-const POSITIVE_INTEGER_REGEX = /^[1-9]\d*$/;
-
-const PAGE = 'page';
-const SIZE = 'size';
-const ORDER = 'order';
-const REVIEW = 'review';
-const CREATION = 'creation';
-const TAG = 'tag';
-const CREATION_CATEGORY = 'creation-category';
+export const PAGE_ARG = 'page';
+export const SIZE_ARG = 'size';
+export const ORDER_ARG = 'order';
+export const REVIEW_ARG = 'review';
+export const CREATION_ARG = 'creation';
+export const TAG_ARG = 'tag';
+export const CREATION_CATEGORY_ARG = 'creation-category';
 
 const INIT_PAGE = 1;
 const INIT_PAGE_SIZE = 10;
@@ -82,11 +81,11 @@ export const convertSearchParamsToReviewCountParams = (
   searchParams: URLSearchParams
 ): GetReviewCountParams => {
   return {
-    review: reviewTitleParse(searchParams.get(REVIEW)),
-    creation: creationIdParse(searchParams.get(CREATION)),
-    tag: tagIdsParse(searchParams.getAll(TAG)),
+    review: reviewTitleParse(searchParams.get(REVIEW_ARG)),
+    creation: creationIdParse(searchParams.get(CREATION_ARG)),
+    tag: tagIdsParse(searchParams.getAll(TAG_ARG)),
     'creation-category': creationCategoriesParse(
-      searchParams.getAll(CREATION_CATEGORY)
+      searchParams.getAll(CREATION_CATEGORY_ARG)
     ),
   };
 };
@@ -96,9 +95,9 @@ export const convertSearchParamsToReviewsParams = (
 ): GetReviewsParams => {
   return {
     ...convertSearchParamsToReviewCountParams(searchParams),
-    page: pageParse(searchParams.get(PAGE)),
-    size: sizeParse(searchParams.get(SIZE)),
-    order: orderParse(searchParams.get(ORDER)),
+    page: pageParse(searchParams.get(PAGE_ARG)),
+    size: sizeParse(searchParams.get(SIZE_ARG)),
+    order: orderParse(searchParams.get(ORDER_ARG)),
   };
 };
 

@@ -1,12 +1,9 @@
-import { useRef } from 'react';
-import useLogin from '@/components/LoginForm/hooks/useLogin';
-import { LoginData } from '@/structures/types';
 import { useFormik } from 'formik';
-import { Messages } from 'primereact/messages';
 import { useTranslation } from 'react-i18next';
 import { ObjectSchema, object, string } from 'yup';
+import { LoginFormBody } from '@/components/LoginForm';
 
-const loginValidationSchema: ObjectSchema<LoginData> = object({
+const loginValidationSchema: ObjectSchema<LoginFormBody> = object({
   email: string()
     .email('email.format')
     .required('email.required')
@@ -14,19 +11,17 @@ const loginValidationSchema: ObjectSchema<LoginData> = object({
   password: string().required('password.required'),
 });
 
-export default function useLoginForm() {
-  const [t] = useTranslation('translation', { keyPrefix: 'validation' });
-  const errorMessage = useRef<Messages>(null);
-  const { login } = useLogin(errorMessage);
+export default function useLoginForm(submit: (values: LoginFormBody) => void) {
+  const [t] = useTranslation('translation', { keyPrefix: 'validation.user' });
 
-  const formik = useFormik<LoginData>({
+  const formik = useFormik<LoginFormBody>({
     initialValues: {
       email: '',
       password: '',
     },
     validationSchema: loginValidationSchema,
-    onSubmit: (values: LoginData) => {
-      login(values);
+    onSubmit: (values: LoginFormBody) => {
+      submit(values);
     },
   });
 
@@ -42,6 +37,5 @@ export default function useLoginForm() {
     passwordValue: formik.values.password,
     isPasswordError,
     passwordError: isPasswordError && t(formik.errors.password!),
-    errorMessage,
   };
 }

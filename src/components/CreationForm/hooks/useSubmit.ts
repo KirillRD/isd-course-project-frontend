@@ -1,13 +1,10 @@
 import useCreateCreation from '@/hooks/api/creation/useCreateCreation';
 import { CreateCreationBody } from '@/redux/api/creationApi';
 import { PagePath } from '@/structures/enums';
-import { ErrorMessage, ResponseError } from '@/structures/types';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function useSubmit() {
-  const { createCreation } = useCreateCreation();
-  const [error, setError] = useState<ErrorMessage | undefined>();
+  const { createCreation, error } = useCreateCreation();
   const navigate = useNavigate();
 
   const submit = async (body: CreateCreationBody) => {
@@ -16,11 +13,8 @@ export default function useSubmit() {
       navigate(
         `${PagePath.REVIEWS}${PagePath.CREATE}${PagePath.CREATIONS}/${creation.id}`
       );
-    } catch (responseError) {
-      setError({
-        message: (responseError as ResponseError).data.message,
-      });
-    }
+      // eslint-disable-next-line no-empty, @typescript-eslint/no-shadow
+    } catch (error) {}
   };
 
   return { submit, error };

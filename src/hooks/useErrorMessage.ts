@@ -2,9 +2,19 @@ import { useEffect, useRef } from 'react';
 import { Messages } from 'primereact/messages';
 import { useTranslation } from 'react-i18next';
 import { Exception } from '@/structures/enums';
-import { ErrorMessage } from '@/structures/types';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { SerializedError } from '@reduxjs/toolkit';
+import { ErrorResponse } from '@/redux/api/types';
 
-export default function useErrorMessage(error: ErrorMessage | undefined) {
+const getErrorMessage = (
+  error: FetchBaseQueryError | SerializedError
+): Exception => {
+  return (error as ErrorResponse).data.message;
+};
+
+export default function useErrorMessage(
+  error: FetchBaseQueryError | SerializedError | undefined
+) {
   const { t, i18n } = useTranslation('translation', {
     keyPrefix: 'exception',
   });
@@ -21,7 +31,7 @@ export default function useErrorMessage(error: ErrorMessage | undefined) {
 
   useEffect(() => {
     if (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(getErrorMessage(error));
     }
   }, [error, i18n.language]);
 

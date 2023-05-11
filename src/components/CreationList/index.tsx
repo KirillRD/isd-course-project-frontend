@@ -7,7 +7,7 @@ import { Button } from 'primereact/button';
 import { Link } from 'react-router-dom';
 import { PagePath } from '@/structures/enums';
 import CreationListHeader from '@/components/CreationList/components/CreationListHeader';
-import CreationListItem from '@/components/CreationList/components/CreationListItem';
+import CreationItem from '@/components/ui/CreationItem';
 
 export default function CreationList() {
   const [t] = useTranslation('translation', { keyPrefix: 'creation.list' });
@@ -26,7 +26,13 @@ export default function CreationList() {
   };
 
   const itemTemplate = (creation: Creation) => {
-    return <CreationListItem creation={creation} />;
+    return (
+      <CreationItem
+        creation={creation}
+        className="my-2"
+        path={`../${creation.id}`}
+      />
+    );
   };
 
   return (
@@ -49,11 +55,7 @@ export default function CreationList() {
       <Link
         to={`${PagePath.REVIEWS}${PagePath.CREATE}${PagePath.CREATIONS}${PagePath.CREATE}`}
       >
-        <Button
-          label={t('add-creation-link')!}
-          severity="success"
-          icon="pi pi-plus"
-        />
+        <Button label={t('add-creation-link')!} icon="pi pi-plus" />
       </Link>
     </div>
   );

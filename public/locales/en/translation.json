@@ -1,5 +1,4 @@
 {
-  "title": "Hello world!",
   "language": {
     "en": "En",
     "ru": "Ru"
@@ -9,24 +8,26 @@
     "dark": "Dark"
   },
   "validation": {
-    "email": {
-      "required": "Email is required",
-      "format": "Invalid email address, e.g. 'user@gmail.com'",
-      "length": "Email length must be less than 50"
-    },
-    "name": {
-      "required": "Name is required",
-      "length": "Name length must be less than 100"
-    },
-    "password": {
-      "required": "Password is required"
-    },
-    "confirm-password": {
-      "required": "Confirm password is required",
-      "format": "Password and confirm password should match"
-    },
-    "roles": {
-      "length": "User must contain at least one role"
+    "user": {
+      "email": {
+        "required": "Email is required",
+        "format": "Invalid email address, e.g. 'user@gmail.com'",
+        "length": "Email length must be less than 50"
+      },
+      "name": {
+        "required": "Name is required",
+        "length": "Name length must be less than 100"
+      },
+      "password": {
+        "required": "Password is required"
+      },
+      "confirm-password": {
+        "required": "Confirm password is required",
+        "format": "Password and confirm password should match"
+      },
+      "roles": {
+        "length": "User must contain at least one role"
+      }
     },
     "review": {
       "title": {
@@ -59,6 +60,9 @@
       "description": {
         "required": "Description is required",
         "length": "Description length must be less than 1000"
+      },
+      "image": {
+        "required": "Image is required"
       }
     },
     "review-comment": {
@@ -72,7 +76,14 @@
     "USER_EMAIL_EXISTS": "Email already exists",
     "USER_CREDENTIAL_INVALID": "Email or password is incorrect",
     "USER_IS_LOCK": "Your account is lock",
-    "CREATION_TITLE_AND_CATEGORY_EXISTS": "Creation with this title and category already exists"
+    "CREATION_TITLE_AND_CATEGORY_EXISTS": "Creation with this title and category already exists",
+    "USER_INVALID_AUTH_TYPE": "The user with that email address is registered in a different way. Try another login method"
+  },
+  "not-found": {
+    "message": "Page not found"
+  },
+  "access-denied": {
+    "message": "Access denied"
   },
   "role": {
     "USER": "USER",
@@ -87,26 +98,26 @@
   },
   "navbar": {
     "login-page": "Login",
-    "sign-up-page": "Sign up",
     "home-page": "Main",
     "review-catalog-page": "Review catalog",
-    "users-page": "Users"
-  },
-  "login-form": {
-    "header": "Login",
-    "email": "Email",
-    "password": "Password",
-    "submit-button": "Login"
-  },
-  "sign-up-form": {
-    "header": "Sign up",
-    "email": "Email",
-    "name": "Name",
-    "password": "Password",
-    "confirm-password": "Confirm password",
-    "submit-button": "Sign up"
+    "users-page": "Users",
+    "add-review": "Add review"
   },
   "user": {
+    "login-form": {
+      "header": "Login",
+      "submit-button": "Login",
+      "hint": "Don't have an account?",
+      "hint-link": "Sign up",
+      "divider": "OR"
+    },
+    "sign-up-form": {
+      "header": "Sign up",
+      "submit-button": "Sign up",
+      "hint": "Already have an account?",
+      "hint-link": "Login",
+      "divider": "OR"
+    },
     "table": {
       "title": "Users",
       "header": {
@@ -128,6 +139,8 @@
     },
     "email": "Email",
     "name": "Name",
+    "password": "Password",
+    "confirm-password": "Confirm password",
     "review-count": "Review count",
     "like-count": "Like count",
     "sign-up-date": "Sign up date",
@@ -138,10 +151,12 @@
   "review": {
     "list": {
       "create-date-desc": {
-        "title": "Recently added reviews"
+        "title": "Recently added reviews",
+        "link": "See all reviews"
       },
       "grade-desc": {
-        "title": "Reviews with the highest grades"
+        "title": "Reviews with the highest grades",
+        "link": "See all reviews"
       },
       "title": "Review catalog",
       "header": {
@@ -151,28 +166,39 @@
         "tags": "Tags",
         "order": "Order",
         "order-options": {
-          "review-create-date-asc": "Review create date asc",
-          "review-create-date-desc": "Review create date desc",
-          "review-title-asc": "Review title asc",
-          "review-title-desc": "Review title desc",
-          "review-grade-asc": "Review grade asc",
-          "review-grade-desc": "Review grade desc"
+          "review-create-date-asc": "Review date ↑",
+          "review-create-date-desc": "Review date ↓",
+          "review-title-asc": "Review title A-Z",
+          "review-title-desc": "Review title Z-A",
+          "review-grade-asc": "Grade 0-10",
+          "review-grade-desc": "Grade 10-0"
         }
       }
+    },
+    "item": {
+      "reviews": "See all reviews"
     },
     "table": {
       "title": "Reviews",
       "header": {
-        "add-review-button": "Add",
+        "add-review-button": "Add review",
         "clear-filters-button": "Clear",
         "global-search-input": "Search"
       },
       "creation-image": "Creation image",
       "creation-category": "Category"
     },
+    "delete-dialog": {
+      "header": "Deleting review",
+      "message": "Are you sure you want to delete this review?"
+    },
     "add-form": {
       "header": "Adding review",
       "submit-button": "Add"
+    },
+    "edit-form": {
+      "header": "Editing review",
+      "submit-button": "Save"
     },
     "title": "Review name",
     "body": "Review",
@@ -196,6 +222,9 @@
         "creation-link": "More detail"
       }
     },
+    "item": {
+      "reviews": "See all reviews"
+    },
     "add-form" : {
       "header": "Adding creation",
       "category-placeholder": "Creation category",
@@ -203,7 +232,8 @@
     },
     "title": "Title",
     "category": "Category",
-    "description": "Description"
+    "description": "Description",
+    "image": "Image"
   },
   "review-comment": {
     "block": {

@@ -29,8 +29,8 @@ export default function ReviewTableHeader({
         <Link to={params.userId ? createReviewLink.slice(1) : createReviewLink}>
           <Button
             label={t('add-review-button')!}
-            severity="success"
-            icon="pi pi-plus"
+            severity="warning"
+            icon="pi pi-comments"
           />
         </Link>
       </div>
