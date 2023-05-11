@@ -37,8 +37,8 @@ export const reviewOrderOptions = [
   'review-create-date-asc',
   'review-title-asc',
   'review-title-desc',
-  'review-grade-asc',
   'review-grade-desc',
+  'review-grade-asc',
 ] as const;
 
 export type ReviewOrderOption = typeof reviewOrderOptions[number];
@@ -84,7 +84,7 @@ const reviewApi = api.injectEndpoints({
         method: HttpMethod.POST,
         body,
       }),
-      invalidatesTags: ['Reviews'],
+      invalidatesTags: ['Reviews', 'Tags'],
     }),
     updateReview: builder.mutation<Review, UpdateReviewBody>({
       query: ({ id, ...body }) => ({
@@ -92,7 +92,7 @@ const reviewApi = api.injectEndpoints({
         method: HttpMethod.PUT,
         body,
       }),
-      invalidatesTags: ['Reviews'],
+      invalidatesTags: ['Reviews', 'Tags'],
     }),
     deleteReview: builder.mutation<void, number>({
       query: (id: number) => ({

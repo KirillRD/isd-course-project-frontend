@@ -11,7 +11,7 @@ export default function useRedirectAfterAuth() {
       location.state && location.state.from
         ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           location.state.from
-        : PagePath.PROFILE
+        : PagePath.HOME
     );
   };
 

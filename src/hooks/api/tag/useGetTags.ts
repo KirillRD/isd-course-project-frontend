@@ -8,6 +8,7 @@ type UseGetTagsArgs = {
 export default function useGetTags({ params, stop }: UseGetTagsArgs) {
   const { data } = useGetTagsQuery(params!, {
     skip: stop ?? !params?.search,
+    refetchOnMountOrArgChange: true,
   });
 
   return { tags: data };

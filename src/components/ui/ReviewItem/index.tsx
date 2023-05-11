@@ -26,6 +26,7 @@ export default function ReviewItem({ review }: ReviewItemProps) {
       <TextLink
         path={PagePath.REVIEWS}
         args={{ [CREATION_ARG]: `${review.creation!.id}` }}
+        reloadDocument
         className="max-w-max"
         selection
       >
@@ -39,6 +40,7 @@ export default function ReviewItem({ review }: ReviewItemProps) {
         <TextLink
           path={PagePath.REVIEWS}
           args={{ [CREATION_ARG]: `${review.creation!.id}` }}
+          reloadDocument
           className="font-bold text-yellow-500"
         >
           <span>
@@ -51,6 +53,7 @@ export default function ReviewItem({ review }: ReviewItemProps) {
           <ImageLink
             path={PagePath.REVIEWS}
             args={{ [CREATION_ARG]: `${review.creation!.id}` }}
+            reloadDocument
             imageUrl={review.creation!.imageUrl}
           />
         </div>

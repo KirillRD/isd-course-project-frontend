@@ -29,6 +29,7 @@ export default function CreationItem({
       <TextLink
         path={path ?? PagePath.REVIEWS}
         args={path ? {} : { [CREATION_ARG]: `${creation.id}` }}
+        reloadDocument
         className="max-w-max"
         selection
       >
@@ -39,6 +40,7 @@ export default function CreationItem({
           <ImageLink
             path={path ?? PagePath.REVIEWS}
             args={path ? {} : { [CREATION_ARG]: `${creation.id}` }}
+            reloadDocument
             imageUrl={creation.imageUrl}
           />
         </div>
@@ -51,6 +53,7 @@ export default function CreationItem({
             <TextLink
               path={PagePath.REVIEWS}
               args={{ [CREATION_ARG]: `${creation.id}` }}
+              reloadDocument
               className="font-bold text-yellow-500"
             >
               <span>

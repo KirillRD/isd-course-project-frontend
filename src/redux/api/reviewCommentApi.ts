@@ -28,7 +28,7 @@ const reviewCommentApi = api.injectEndpoints({
         method: HttpMethod.POST,
         body,
       }),
-      invalidatesTags: ['ReviewComments'],
+      invalidatesTags: ['ReviewComments', 'Reviews'],
     }),
   }),
 });

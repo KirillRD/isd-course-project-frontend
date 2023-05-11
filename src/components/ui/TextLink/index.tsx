@@ -13,6 +13,7 @@ type TextLinkProps = {
   children: JSX.Element | string | number;
   path: string;
   args?: URLSearchParamsInit;
+  reloadDocument?: boolean;
   selection?: boolean;
 };
 
@@ -22,6 +23,7 @@ export default function TextLink({
   children,
   path,
   args,
+  reloadDocument = false,
   selection = false,
 }: TextLinkProps) {
   return (
@@ -30,6 +32,7 @@ export default function TextLink({
         pathname: path,
         search: createSearchParams(args).toString(),
       }}
+      reloadDocument={reloadDocument}
       style={style}
       className={classNames(styles.link, className, {
         [styles.selectionLink]: selection,

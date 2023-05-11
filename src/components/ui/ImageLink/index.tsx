@@ -8,6 +8,7 @@ import {
 type ImageLinkProps = {
   path: string;
   args?: URLSearchParamsInit;
+  reloadDocument?: boolean;
   imageUrl: string;
   alt?: string;
 };
@@ -15,6 +16,7 @@ type ImageLinkProps = {
 export default function ImageLink({
   path,
   args,
+  reloadDocument = false,
   imageUrl,
   alt,
 }: ImageLinkProps) {
@@ -24,6 +26,7 @@ export default function ImageLink({
         pathname: path,
         search: createSearchParams(args).toString(),
       }}
+      reloadDocument={reloadDocument}
       className="block border-round-md"
     >
       <ImageContainer url={imageUrl} alt={alt} selection />
