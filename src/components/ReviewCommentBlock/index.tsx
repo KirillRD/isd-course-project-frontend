@@ -15,7 +15,9 @@ export default function ReviewCommentBlock() {
     <Card className="flex flex-column gap-3">
       <div className="flex align-items-center justify-content-between">
         <h2 className="m-0">{t('title')}</h2>
-        <ReviewComment commentCount={Number(reviewComments?.length)} />
+        <ReviewComment
+          commentCount={reviewComments ? reviewComments.length : 0}
+        />
       </div>
       <ReviewCommentForm />
       <ReviewCommentList reviewComments={reviewComments!} />

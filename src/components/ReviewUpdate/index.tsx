@@ -9,7 +9,16 @@ type ReviewUpdateProps = {
 export default function ReviewUpdate({ review }: ReviewUpdateProps) {
   const { handleSubmit } = useHandleSubmit(review.id);
 
-  const { user, userId, creation, creationId, ...reviewObject } = review;
+  const {
+    user,
+    userId,
+    creation,
+    creationId,
+    userLikes,
+    comments,
+    _count: count,
+    ...reviewObject
+  } = review;
 
   return (
     <ReviewAction
