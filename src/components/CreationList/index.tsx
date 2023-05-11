@@ -52,9 +52,7 @@ export default function CreationList() {
         emptyMessage=" "
       />
       <p className="mt-6 mb-2">{t('add-creation-message')}</p>
-      <Link
-        to={`${PagePath.REVIEWS}${PagePath.CREATE}${PagePath.CREATIONS}${PagePath.CREATE}`}
-      >
+      <Link to={`../.${PagePath.CREATE}`}>
         <Button label={t('add-creation-link')!} icon="pi pi-plus" />
       </Link>
     </div>
