@@ -21,7 +21,9 @@ export default function ReviewListByParams({
   const [t] = useTranslation('translation', {
     keyPrefix: `review.list.${translatePrefix}`,
   });
-  const { data } = useGetReviewsQuery(params);
+  const { data } = useGetReviewsQuery(params, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const args = useMemo(() => {
     const { page, size, ...argsObj } = params;

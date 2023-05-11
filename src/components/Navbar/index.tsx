@@ -33,7 +33,7 @@ export default function Navbar() {
                 severity="secondary"
               />
             </Link>
-            <Link to={PagePath.REVIEWS}>
+            <Link to={PagePath.REVIEWS} reloadDocument>
               <Button
                 label={t('review-catalog-page')!}
                 text
