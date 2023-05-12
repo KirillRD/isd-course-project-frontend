@@ -9,6 +9,7 @@ import parse from 'html-react-parser';
 import styles from './styles.module.scss';
 import ReviewImageGalleria from '@/components/ui/ReviewImageGalleria';
 import UserBasicData from '@/components/ui/UserBasicData';
+import ReviewEditButton from '@/components/ui/ReviewEditButton';
 
 type ReviewProps = {
   review: Review;
@@ -20,7 +21,10 @@ export default function ReviewDescription({ review }: ReviewProps) {
   return (
     <Card className="flex flex-column gap-3">
       <div className="flex align-items-center justify-content-between">
-        <UserBasicData user={review.user!} />
+        <div className="flex align-items-center gap-2">
+          <UserBasicData user={review.user!} />
+          <span>{getFormattedDate(review.createDate)}</span>
+        </div>
         <div className="flex align-items-center gap-2">
           <span>{t('grade')!}:</span>
           <GradeBadge grade={review.grade} />
@@ -30,12 +34,9 @@ export default function ReviewDescription({ review }: ReviewProps) {
       <ReviewTagEnumeration tags={review.tags!} />
       <div className={styles.reviewBody}>{parse(review.body)}</div>
       <ReviewImageGalleria images={review.images!} />
-      <div className="flex align-items-center justify-content-between">
-        <div className="flex gap-2">
-          <span>{t('create-date')}:</span>
-          <span>{getFormattedDate(review.createDate)}</span>
-        </div>
-        <div className="flex align-items-center gap-2">
+      <div className="flex align-items-center">
+        <ReviewEditButton review={review} />
+        <div className="ml-auto flex align-items-center gap-2">
           <ReviewLikeAction
             reviewId={review.id}
             userLike={!!review.userLikes?.length}

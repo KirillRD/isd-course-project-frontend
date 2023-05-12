@@ -5,7 +5,7 @@ import {
   AutoCompleteChangeEvent,
   AutoCompleteCompleteEvent,
 } from 'primereact/autocomplete';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, FocusEvent } from 'react';
 
 export default function useTags(
   tagsValue: TagBody[],
@@ -25,11 +25,10 @@ export default function useTags(
     );
     if (
       searchParams.search &&
-      !tags?.length &&
       !newFilteredTags?.some((tag) => tag.name === searchParams.search) &&
       !tagsValue.some((tag) => tag.name === searchParams.search)
     ) {
-      newFilteredTags?.push({
+      newFilteredTags?.unshift({
         name: searchParams.search,
       });
     }
@@ -37,9 +36,11 @@ export default function useTags(
   }, [tags, searchParams]);
 
   const handleTagsChange = (event: AutoCompleteChangeEvent) => {
-    if (event.value) {
-      setFieldValue('tags', [...(event.value as TagBody[])]);
-    }
+    setFieldValue('tags', event.value as TagBody[]);
+  };
+
+  const handleTagsBlur = (event: FocusEvent<HTMLInputElement, Element>) => {
+    event.target.value = '';
   };
 
   const handleTagsCompleteMethod = (event: AutoCompleteCompleteEvent) => {
@@ -48,5 +49,10 @@ export default function useTags(
     });
   };
 
-  return { filteredTags, handleTagsChange, handleTagsCompleteMethod };
+  return {
+    filteredTags,
+    handleTagsChange,
+    handleTagsBlur,
+    handleTagsCompleteMethod,
+  };
 }

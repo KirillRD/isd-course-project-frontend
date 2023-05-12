@@ -103,6 +103,9 @@
     "users-page": "Users",
     "add-review": "Add review"
   },
+  "google-button": {
+    "title": "Continue with Google"
+  },
   "user": {
     "login-form": {
       "header": "Login",
@@ -137,6 +140,10 @@
         "cancel-button": "Cancel"
       }
     },
+    "profile": {
+      "title": "Profile info",
+      "logout-button": "Logout"
+    },
     "email": "Email",
     "name": "Name",
     "password": "Password",
@@ -145,8 +152,7 @@
     "like-count": "Like count",
     "sign-up-date": "Sign up date",
     "is-lock": "Lock",
-    "roles": "Roles",
-    "image": "Image"
+    "roles": "Roles"
   },
   "review": {
     "list": {
@@ -176,7 +182,8 @@
       }
     },
     "item": {
-      "reviews": "See all reviews"
+      "reviews": "See all reviews",
+      "edit-button": "Edit review"
     },
     "table": {
       "title": "Reviews",

@@ -1,4 +1,5 @@
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
+import styles from './styles.module.scss';
 
 type GoogleButtonProps = {
   className?: string;
@@ -7,14 +8,12 @@ type GoogleButtonProps = {
 
 export default function GoogleButton({ onSuccess }: GoogleButtonProps) {
   return (
-    <GoogleOAuthProvider
-      clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID as string}
-    >
+    <div className="flex justify-content-center">
       <GoogleLogin
         onSuccess={(credentialResponse) =>
           onSuccess(credentialResponse.credential!)
         }
       />
-    </GoogleOAuthProvider>
+    </div>
   );
 }

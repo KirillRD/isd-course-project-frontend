@@ -10,8 +10,8 @@ import UserTableHeader from '@/components/UserTable/components/UserTableHeader';
 import UserRoles from '@/components/UserTable/components/UserRoles';
 import TextLink from '@/components/ui/TextLink';
 import { PagePath } from '@/structures/enums';
-import ImageLink from '@/components/ui/ImageLink';
 import useUserTable from '@/components/UserTable/hooks/useUserTable';
+import UserLikeCount from '@/components/ui/UserLikeCount';
 
 export default function UserTable() {
   const [t] = useTranslation('translation', { keyPrefix: 'user' });
@@ -25,21 +25,16 @@ export default function UserTable() {
     handleSearchChange,
   } = useUserTable();
 
-  const imageTemplate = (user: User) => {
-    return (
-      <ImageLink
-        path={`${PagePath.USERS}/${user.id}`}
-        imageUrl="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
-      />
-    );
-  };
-
   const emailTemplate = (user: User) => {
     return (
       <TextLink path={`${PagePath.USERS}/${user.id}`} selection>
         {user.email}
       </TextLink>
     );
+  };
+
+  const userLikeCountTemplate = (user: User) => {
+    return <UserLikeCount user={user} />;
   };
 
   const signUpDateTemplate = (user: User) => {
@@ -71,6 +66,7 @@ export default function UserTable() {
         rows={pageSize}
         onPage={handlePage}
         stripedRows
+        size="small"
         header={
           <UserTableHeader
             searchValue={searchValue!}
@@ -78,12 +74,6 @@ export default function UserTable() {
           />
         }
       >
-        <Column
-          className={styles.image}
-          header={t('image')}
-          alignHeader="center"
-          body={imageTemplate}
-        />
         <Column
           className={styles.email}
           field="email"
@@ -98,8 +88,8 @@ export default function UserTable() {
         />
         <Column
           className={styles.likeCount}
-          field="_count.reviewLikes"
           header={t('like-count')}
+          body={userLikeCountTemplate}
         />
         <Column
           className={styles.signUpDate}

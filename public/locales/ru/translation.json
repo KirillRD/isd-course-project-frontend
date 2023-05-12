@@ -103,6 +103,9 @@
     "users-page": "Пользователи",
     "add-review": "Добавить обзор"
   },
+  "google-button": {
+    "title": "Продолжить с Google"
+  },
   "user": {
     "login-form": {
       "header": "Вход",
@@ -137,6 +140,10 @@
         "cancel-button": "Отменить"
       }
     },
+    "profile": {
+      "title": "Данные профиля",
+      "logout-button": "Выйти"
+    },
     "email": "Почта",
     "name": "Имя",
     "password": "Пароль",
@@ -145,8 +152,7 @@
     "like-count": "Кол-во лайков",
     "sign-up-date": "Дата регистрации",
     "is-lock": "Блок.",
-    "roles": "Роли",
-    "image": "Изобр."
+    "roles": "Роли"
   },
   "review": {
     "list": {
@@ -176,7 +182,8 @@
       }
     },
     "item": {
-      "reviews": "Смотреть все обзоры"
+      "reviews": "Смотреть все обзоры",
+      "edit-button": "Редактировать обзор"
     },
     "table": {
       "title": "Обзоры",

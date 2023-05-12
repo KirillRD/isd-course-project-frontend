@@ -56,10 +56,12 @@ export default function ReviewForm({
     tagsError,
     imagesValue,
   } = useReviewForm(submit, reviewFormBody);
-  const { filteredTags, handleTagsChange, handleTagsCompleteMethod } = useTags(
-    tagsValue!,
-    setFieldValue
-  );
+  const {
+    filteredTags,
+    handleTagsChange,
+    handleTagsBlur,
+    handleTagsCompleteMethod,
+  } = useTags(tagsValue!, setFieldValue);
   const { reviewImages, handleImageSelect, handleImageRemove } = useImages(
     imagesValue!,
     setFieldValue
@@ -126,11 +128,11 @@ export default function ReviewForm({
           id="tags"
           value={tagsValue}
           onChange={handleTagsChange}
+          onBlur={handleTagsBlur}
           field="name"
           multiple
           suggestions={filteredTags}
           completeMethod={handleTagsCompleteMethod}
-          forceSelection
         />
         <small className="p-error">{tagsError}</small>
       </div>
