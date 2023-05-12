@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { PagePath } from '@/structures/enums';
 import CreationListHeader from '@/components/CreationList/components/CreationListHeader';
 import CreationItem from '@/components/ui/CreationItem';
+import Card from '@/components/ui/Card';
 
 export default function CreationList() {
   const [t] = useTranslation('translation', { keyPrefix: 'creation.list' });
@@ -36,7 +37,7 @@ export default function CreationList() {
   };
 
   return (
-    <div className="p-4 surface-card border-round border-1 surface-border">
+    <Card>
       <h1 className="mt-0">{t('title')}</h1>
       <p>{t('description')}</p>
       <DataView
@@ -55,6 +56,6 @@ export default function CreationList() {
       <Link to={`../.${PagePath.CREATE}`}>
         <Button label={t('add-creation-link')!} icon="pi pi-plus" />
       </Link>
-    </div>
+    </Card>
   );
 }

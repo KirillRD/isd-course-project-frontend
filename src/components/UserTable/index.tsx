@@ -12,6 +12,7 @@ import TextLink from '@/components/ui/TextLink';
 import { PagePath } from '@/structures/enums';
 import useUserTable from '@/components/UserTable/hooks/useUserTable';
 import UserLikeCount from '@/components/ui/UserLikeCount';
+import Card from '@/components/ui/Card';
 
 export default function UserTable() {
   const [t] = useTranslation('translation', { keyPrefix: 'user' });
@@ -29,6 +30,14 @@ export default function UserTable() {
     return (
       <TextLink path={`${PagePath.USERS}/${user.id}`} selection>
         {user.email}
+      </TextLink>
+    );
+  };
+
+  const nameTemplate = (user: User) => {
+    return (
+      <TextLink path={`${PagePath.USERS}/${user.id}`} selection>
+        {user.name}
       </TextLink>
     );
   };
@@ -54,7 +63,7 @@ export default function UserTable() {
   };
 
   return (
-    <div className="p-4 surface-card border-round border-1 surface-border">
+    <Card>
       <h2 className="mt-0">{t('table.title')}</h2>
       <DataTable
         value={users}
@@ -80,7 +89,12 @@ export default function UserTable() {
           header={t('email')}
           body={emailTemplate}
         />
-        <Column className={styles.name} field="name" header={t('name')} />
+        <Column
+          className={styles.name}
+          field="name"
+          header={t('name')}
+          body={nameTemplate}
+        />
         <Column
           className={styles.reviewCount}
           field="_count.reviews"
@@ -111,6 +125,6 @@ export default function UserTable() {
         />
         <Column body={actionsTemplate} />
       </DataTable>
-    </div>
+    </Card>
   );
 }

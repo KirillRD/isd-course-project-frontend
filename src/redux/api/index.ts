@@ -10,6 +10,8 @@ import {
 
 type ApiBaseQueryType = ReturnType<typeof fetchBaseQuery>;
 
+const BASE_URL = import.meta.env.VITE_API_URL as string;
+
 const CSRF_TOKEN_ENDPOINT = `${ApiEndpoint.AUTH}/csrf-token`;
 const REFRESH_TOKENS_ENDPOINT = `${ApiEndpoint.AUTH}/refresh-token/refresh-tokens`;
 
@@ -22,13 +24,33 @@ type CsrfTokenResponse = {
   csrfToken: string;
 };
 
+const refreshTokens = async (): Promise<string> => {
+  const csrfResponse = await fetch(`${BASE_URL}/${CSRF_TOKEN_ENDPOINT}`);
+  const csrfToken = ((await csrfResponse.json()) as CsrfTokenResponse)
+    .csrfToken;
+  const refreshTokenResponse = await fetch(
+    `${BASE_URL}/${REFRESH_TOKENS_ENDPOINT}`,
+    {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        [CSRF_HEADER]: csrfToken,
+      },
+    }
+  );
+  const accessToken = (
+    (await refreshTokenResponse.json()) as AccessTokenResponse
+  ).accessToken;
+  return accessToken;
+};
+
 const commonBaseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_URL as string,
+  baseUrl: BASE_URL,
   credentials: 'include',
 });
 
 const baseQueryWithPrepareHeaders = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_URL as string,
+  baseUrl: BASE_URL,
   credentials: 'include',
   prepareHeaders: async (headers, api) => {
     if (api.type == MUTATION) {
@@ -59,18 +81,9 @@ const baseQueryWithReAuth: ApiBaseQueryType = async (
   if (response.error) {
     const message = (response.error as ErrorResponse).data.message;
     if (message == Exception.JWT_ACCESS_TOKEN_EXPIRATION) {
-      const refreshResult = await commonBaseQuery(
-        REFRESH_TOKENS_ENDPOINT,
-        api,
-        extraOptions
-      );
-
-      if (refreshResult.data) {
-        api.dispatch(
-          setAccessToken(
-            (refreshResult.data as AccessTokenResponse).accessToken
-          )
-        );
+      const accessToken = await refreshTokens();
+      if (accessToken) {
+        api.dispatch(setAccessToken(accessToken));
         response = await baseQueryWithPrepareHeaders(args, api, extraOptions);
       } else {
         api.dispatch(resetAuth());

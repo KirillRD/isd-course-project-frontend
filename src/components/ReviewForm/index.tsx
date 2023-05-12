@@ -18,6 +18,7 @@ import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
 import { ReviewImageBody, TagBody } from '@/redux/api/reviewApi';
 import { Review } from '@/structures/types';
+import Card from '@/components/ui/Card';
 
 export type ReviewFormBody = {
   title: string;
@@ -74,89 +75,88 @@ export default function ReviewForm({
   const translatePagePrefix = reviewFormBody ? 'edit-form' : 'add-form';
 
   return (
-    <form
-      className="flex flex-column p-fluid p-4 surface-card border-round border-1 surface-border"
-      onSubmit={handleSubmit}
-    >
-      <h2 className="mt-0">{t(`${translatePagePrefix}.header`)}</h2>
+    <Card>
+      <form className="flex flex-column p-fluid" onSubmit={handleSubmit}>
+        <h2 className="mt-0">{t(`${translatePagePrefix}.header`)}</h2>
 
-      <div className="field">
-        <label htmlFor="title">{t('title')}</label>
-        <InputText
-          className={classNames({ 'p-invalid': isTitleError })}
-          id="title"
-          type="text"
-          value={titleValue}
-          onChange={handleChange}
+        <div className="field">
+          <label htmlFor="title">{t('title')}</label>
+          <InputText
+            className={classNames({ 'p-invalid': isTitleError })}
+            id="title"
+            type="text"
+            value={titleValue}
+            onChange={handleChange}
+          />
+          <small className="p-error">{titleError}</small>
+        </div>
+
+        <div className="field">
+          <label htmlFor="body">{t('body')}</label>
+          <Editor
+            id="body"
+            value={bodyValue}
+            onTextChange={handleBodyChange}
+            style={{ minHeight: '300px' }}
+          />
+          <small className="p-error">{bodyError}</small>
+        </div>
+
+        <div className="field w-9rem">
+          <label htmlFor="grade">{t('grade')}</label>
+          <InputNumber
+            className={classNames({ 'p-invalid': isGradeError })}
+            id="grade"
+            value={gradeValue}
+            onValueChange={handleChange}
+            min={MIN_GRADE}
+            max={MAX_GRADE}
+            step={GRADE_STEP}
+            showButtons
+            buttonLayout="horizontal"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+          />
+          <small className="p-error">{gradeError}</small>
+        </div>
+
+        <div className="field">
+          <label htmlFor="tags">{t('tags')}</label>
+          <AutoComplete
+            className={classNames({ 'p-invalid': isTagsError })}
+            id="tags"
+            value={tagsValue}
+            onChange={handleTagsChange}
+            onBlur={handleTagsBlur}
+            field="name"
+            multiple
+            suggestions={filteredTags}
+            completeMethod={handleTagsCompleteMethod}
+          />
+          <small className="p-error">{tagsError}</small>
+        </div>
+
+        <div className="field">
+          <label htmlFor="images">{t('images')}</label>
+          <FileUpload
+            ref={reviewImages}
+            id="images"
+            onSelect={handleImageSelect}
+            onRemove={handleImageRemove}
+            multiple
+            accept="image/*"
+            maxFileSize={MAX_IMAGE_SIZE}
+            uploadOptions={{ className: 'hidden' }}
+            cancelOptions={{ className: 'hidden' }}
+          />
+        </div>
+
+        <Button
+          className="w-9rem align-self-end"
+          type="submit"
+          label={t(`${translatePagePrefix}.submit-button`)!}
         />
-        <small className="p-error">{titleError}</small>
-      </div>
-
-      <div className="field">
-        <label htmlFor="body">{t('body')}</label>
-        <Editor
-          id="body"
-          value={bodyValue}
-          onTextChange={handleBodyChange}
-          style={{ minHeight: '300px' }}
-        />
-        <small className="p-error">{bodyError}</small>
-      </div>
-
-      <div className="field w-9rem">
-        <label htmlFor="grade">{t('grade')}</label>
-        <InputNumber
-          className={classNames({ 'p-invalid': isGradeError })}
-          id="grade"
-          value={gradeValue}
-          onValueChange={handleChange}
-          min={MIN_GRADE}
-          max={MAX_GRADE}
-          step={GRADE_STEP}
-          showButtons
-          buttonLayout="horizontal"
-          incrementButtonIcon="pi pi-plus"
-          decrementButtonIcon="pi pi-minus"
-        />
-        <small className="p-error">{gradeError}</small>
-      </div>
-
-      <div className="field">
-        <label htmlFor="tags">{t('tags')}</label>
-        <AutoComplete
-          className={classNames({ 'p-invalid': isTagsError })}
-          id="tags"
-          value={tagsValue}
-          onChange={handleTagsChange}
-          onBlur={handleTagsBlur}
-          field="name"
-          multiple
-          suggestions={filteredTags}
-          completeMethod={handleTagsCompleteMethod}
-        />
-        <small className="p-error">{tagsError}</small>
-      </div>
-
-      <div className="field">
-        <label htmlFor="images">{t('images')}</label>
-        <FileUpload
-          ref={reviewImages}
-          id="images"
-          onSelect={handleImageSelect}
-          onRemove={handleImageRemove}
-          multiple
-          accept="image/*"
-          maxFileSize={MAX_IMAGE_SIZE}
-          uploadOptions={{ className: 'hidden' }}
-          cancelOptions={{ className: 'hidden' }}
-        />
-      </div>
-
-      <Button
-        className="w-9rem align-self-end"
-        type="submit"
-        label={t(`${translatePagePrefix}.submit-button`)!}
-      />
-    </form>
+      </form>
+    </Card>
   );
 }

@@ -8,6 +8,7 @@ import TextLink from '@/components/ui/TextLink';
 import { PagePath } from '@/structures/enums';
 import ImageLink from '@/components/ui/ImageLink';
 import { CREATION_ARG } from '@/utils/reviewSearchParams';
+import Card from '@/components/ui/Card';
 
 type CreationItemProps = {
   className?: string;
@@ -16,16 +17,14 @@ type CreationItemProps = {
 };
 
 export default function CreationItem({
-  className,
+  className = '',
   creation,
   path,
 }: CreationItemProps) {
   const [t] = useTranslation('translation', { keyPrefix: 'creation' });
 
   return (
-    <div
-      className={`w-full flex flex-column gap-3 p-3 surface-card border-round border-1 surface-border ${className!}`}
-    >
+    <Card className={`w-full flex flex-column gap-3 py-3 px-3 ${className}`}>
       <TextLink
         path={path ?? PagePath.REVIEWS}
         args={path ? {} : { [CREATION_ARG]: `${creation.id}` }}
@@ -74,6 +73,6 @@ export default function CreationItem({
           />
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

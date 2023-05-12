@@ -20,13 +20,19 @@ export default function useTags(
     const newFilteredTags: TagBody[] | undefined = tags?.filter(
       (tag) =>
         !tagsValue.some(
-          (tagValue) => tag.id === tagValue.id || tag.name === tagValue.name
+          (tagValue) =>
+            tag.id === tagValue.id ||
+            tag.name.toLowerCase() === tagValue.name?.toLowerCase()
         )
     );
     if (
       searchParams.search &&
-      !newFilteredTags?.some((tag) => tag.name === searchParams.search) &&
-      !tagsValue.some((tag) => tag.name === searchParams.search)
+      !newFilteredTags?.some(
+        (tag) => tag.name?.toLowerCase() === searchParams.search?.toLowerCase()
+      ) &&
+      !tagsValue.some(
+        (tag) => tag.name?.toLowerCase() === searchParams.search?.toLowerCase()
+      )
     ) {
       newFilteredTags?.unshift({
         name: searchParams.search,

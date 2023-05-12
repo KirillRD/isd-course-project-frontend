@@ -24,8 +24,8 @@ export default function ReviewTableHeader({
   const params = useParams();
 
   return (
-    <div className="flex justify-content-between align-items-center">
-      <div className="flex gap-2">
+    <div className="flex align-items-center flex-wrap">
+      <div className="xl:col-2 md:col-3 sm:col-4 col-12 p-fluid">
         <Link to={params.userId ? createReviewLink.slice(1) : createReviewLink}>
           <Button
             label={t('add-review-button')!}
@@ -34,13 +34,15 @@ export default function ReviewTableHeader({
           />
         </Link>
       </div>
-      <div className="flex gap-2">
+      <div className="xl:col-2 md:col-3 sm:col-4 col-12 p-fluid sm:ml-auto">
         <Button
           label={t('clear-filters-button')!}
           onClick={clearFilters}
           icon="pi pi-filter-slash"
           outlined
         />
+      </div>
+      <div className="xl:col-2 md:col-3 sm:col-4 col-12 p-fluid">
         <span className="p-input-icon-left">
           <i className="pi pi-search" />
           <InputText

@@ -16,6 +16,7 @@ import { PagePath } from '@/structures/enums';
 import ReviewActions from '@/components/ReviewTable/components/ReviewActions';
 import ImageLink from '@/components/ui/ImageLink';
 import { CREATION_ARG } from '@/utils/reviewSearchParams';
+import Card from '@/components/ui/Card';
 
 type ReviewTableProps = {
   reviews: Review[];
@@ -97,7 +98,7 @@ export default function ReviewTable({ reviews }: ReviewTableProps) {
   };
 
   return (
-    <div className="p-4 surface-card border-round border-1 surface-border">
+    <Card>
       <h2 className="mt-0">{t('table.title')}</h2>
       <DataTable
         value={getReviews(reviews)}
@@ -178,6 +179,6 @@ export default function ReviewTable({ reviews }: ReviewTableProps) {
         />
         <Column body={actionsTemplate} />
       </DataTable>
-    </div>
+    </Card>
   );
 }

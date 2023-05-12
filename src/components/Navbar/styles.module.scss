@@ -1,11 +1,89 @@
-.logo {
-  height: 3rem;
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+$navbarGap: 1rem;
+
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: $navbarGap;
 }
 
-.logo:hover {
-  filter: brightness(90%);
+.fullTextSearch {
+  margin-left: auto;
 }
 
-.fullTextSearch * {
+.fullTextSearch form {
   max-height: 2.5rem;
+}
+
+.themeDropdown {
+  width: 5rem;
+}
+
+.languageDropdown {
+  width: 6.5rem;
+}
+
+.hamburger {
+  display: none;
+  margin-left: auto;
+  font: var(--fa-font-solid);
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+@media (max-width: 950px) {
+  .navbar {
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    align-content: baseline;
+    padding: 1rem 3rem;
+    background-color: var(--surface-card);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: .5s clip-path;
+  }
+
+  .navbar > a {
+    flex-basis: 100%;
+  }
+
+  .navbar > a > button {
+    width: 100%;
+  }
+
+  .fullTextSearch {
+    flex-basis: 100%;
+  }
+
+  .themeDropdown {
+    flex-basis: calc(50% - #{$navbarGap} / 2);
+  }
+  
+  .languageDropdown {
+    flex-basis: calc(50% - #{$navbarGap} / 2);
+  }
+
+  .hamburger {
+    display: block;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .hamburger::before {
+    content: "\f0c9";
+  }
+
+  .hamburger:checked::before {
+    content: "\f00d";
+  }
+
+  .hamburger:checked ~ .navbar {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
 }

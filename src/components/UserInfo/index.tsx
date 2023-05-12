@@ -1,3 +1,4 @@
+import Card from '@/components/ui/Card';
 import useLogout from '@/hooks/api/auth/useLogout';
 import { User } from '@/structures/types';
 import { Button } from 'primereact/button';
@@ -12,7 +13,7 @@ export default function UserInfo({ user }: UserInfoProps) {
   const { logout } = useLogout();
 
   return (
-    <div className="p-4 surface-card border-round border-1 surface-border flex flex-column gap-3">
+    <Card className="flex flex-column gap-3">
       <div className="flex align-items-center justify-content-between">
         <h2 className="m-0">{t('profile.title')!}</h2>
         <Button
@@ -29,6 +30,6 @@ export default function UserInfo({ user }: UserInfoProps) {
           <span className="font-bold">{t('name')}:</span> {user.name}
         </p>
       </div>
-    </div>
+    </Card>
   );
 }

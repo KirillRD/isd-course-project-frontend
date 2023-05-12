@@ -17,13 +17,13 @@ enum CreationCategoryColor {
 
 export default function CreationCategoryTag({
   creationCategory,
-  className,
+  className = '',
 }: CreationCategoryTagProps) {
   const [t] = useTranslation('translation', { keyPrefix: 'creation-category' });
 
   return (
     <Tag
-      className={`${CreationCategoryColor[creationCategory]} ${className!}`}
+      className={`${CreationCategoryColor[creationCategory]} ${className}`}
       value={t(creationCategory)}
     />
   );

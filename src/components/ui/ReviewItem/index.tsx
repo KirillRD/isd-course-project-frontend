@@ -65,7 +65,7 @@ export default function ReviewItem({ review }: ReviewItemProps) {
           >
             <h3 className="m-0">{review.title}</h3>
           </TextLink>
-          <div className="flex align-items-center justify-content-between">
+          <div className="flex align-items-center justify-content-between gap-2 flex-wrap">
             <div className="flex align-items-center gap-3">
               <UserBasicData user={review.user!} />
               <span>{getFormattedDate(review.createDate)}</span>
