@@ -10,12 +10,19 @@ import styles from './styles.module.scss';
 import ReviewImageGalleria from '@/components/ui/ReviewImageGalleria';
 import UserBasicData from '@/components/ui/UserBasicData';
 import ReviewEditButton from '@/components/ui/ReviewEditButton';
+import ReviewToPdfButton from '@/components/ReviewToPdfButton';
 
 type ReviewProps = {
   review: Review;
+  pdf?: boolean;
+  edit?: boolean;
 };
 
-export default function ReviewDescription({ review }: ReviewProps) {
+export default function ReviewDescription({
+  review,
+  pdf = false,
+  edit = false,
+}: ReviewProps) {
   const [t] = useTranslation('translation', { keyPrefix: 'review' });
 
   return (
@@ -35,7 +42,10 @@ export default function ReviewDescription({ review }: ReviewProps) {
       <div className={styles.reviewBody}>{parse(review.body)}</div>
       <ReviewImageGalleria images={review.images!} />
       <div className="flex align-items-center">
-        <ReviewEditButton review={review} />
+        <div className="flex align-items-center gap-2">
+          {pdf && <ReviewToPdfButton review={review} />}
+          {edit && <ReviewEditButton review={review} />}
+        </div>
         <div className="ml-auto flex align-items-center gap-2">
           <ReviewLikeAction
             reviewId={review.id}

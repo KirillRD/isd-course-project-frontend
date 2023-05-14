@@ -11,7 +11,7 @@ export default function FullReviewDescription() {
       {review && (
         <div className="flex flex-column gap-2">
           <CreationItem creation={review.creation!} />
-          <ReviewDescription review={review} />
+          <ReviewDescription review={review} pdf edit />
           <ReviewCommentBlock />
         </div>
       )}

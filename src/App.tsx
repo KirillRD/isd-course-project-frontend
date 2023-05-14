@@ -21,6 +21,7 @@ import ReviewPage from '@/pages/ReviewPage';
 import UserPage from '@/pages/UserPage';
 import ReviewUpdatePage from '@/pages/ReviewUpdatePage';
 import ReviewCatalog from '@/pages/ReviewCatalog';
+import AccessDeniedPage from '@/pages/AccessDeniedPage';
 
 export default function App() {
   useLocale();
@@ -36,6 +37,7 @@ export default function App() {
             <Route index element={<ReviewCatalog />} />
             <Route path=":reviewId" element={<ReviewPage />} />
           </Route>
+          <Route path={PagePath.ACCESS_DENIED} element={<AccessDeniedPage />} />
 
           <Route element={<Auth allowedRoles={[]} />}>
             <Route path={PagePath.LOGIN} element={<LoginPage />} />

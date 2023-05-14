@@ -26,7 +26,7 @@ export default function useEditUserForm(
   user: User,
   onSubmit: (updateUserBody: UpdateUserBody) => void
 ) {
-  const [t] = useTranslation('translation', { keyPrefix: 'validation' });
+  const [t] = useTranslation('translation', { keyPrefix: 'validation.user' });
   const formik = useFormik<EditUserData>({
     initialValues: {
       isLock: user.isLock,

@@ -8,17 +8,33 @@ import { Button } from 'primereact/button';
 import FullTextSearch from '@/components/FullTextSearch';
 import styles from './styles.module.scss';
 import LogoLink from '@/components/ui/LogoLink';
+import { ChangeEvent, useState } from 'react';
 
 export default function Navbar() {
   const [t] = useTranslation('translation', { keyPrefix: 'navbar' });
   const authUser = useAppSelector((state) => state.authUser.user);
   const { pathname } = useLocation();
+  const [navbar, setNavbar] = useState<boolean>(false);
+
+  const handleChangeNavbar = (event: ChangeEvent<HTMLInputElement>) => {
+    setNavbar(event.target.checked);
+  };
+
+  const closeNavbar = () => {
+    setNavbar(false);
+  };
 
   return (
     <nav className="h-4rem w-full flex justify-content-center align-items-center surface-card border-bottom-1 surface-border">
       <div className="col-11 flex align-items-center gap-4">
         <LogoLink />
-        <input id="hamburger" type="checkbox" className={styles.hamburger} />
+        <input
+          id="hamburger"
+          type="checkbox"
+          checked={navbar}
+          onChange={handleChangeNavbar}
+          className={styles.hamburger}
+        />
         <div className={styles.navbar}>
           <Link to={PagePath.HOME}>
             <Button
@@ -26,6 +42,7 @@ export default function Navbar() {
               text
               raised={!!matchPath(PagePath.HOME, pathname)}
               severity="secondary"
+              onClick={closeNavbar}
             />
           </Link>
           <Link to={PagePath.REVIEWS} reloadDocument>
@@ -34,6 +51,7 @@ export default function Navbar() {
               text
               raised={!!matchPath(PagePath.REVIEWS, pathname)}
               severity="secondary"
+              onClick={closeNavbar}
             />
           </Link>
           {authUser?.roles.includes(Role.ADMIN) && (
@@ -43,6 +61,7 @@ export default function Navbar() {
                 text
                 raised={!!matchPath(PagePath.USERS, pathname)}
                 severity="secondary"
+                onClick={closeNavbar}
               />
             </Link>
           )}
@@ -56,6 +75,7 @@ export default function Navbar() {
               text={
                 !matchPath(`${PagePath.REVIEWS}${PagePath.CREATE}/*`, pathname)
               }
+              onClick={closeNavbar}
             />
           </Link>
           <FullTextSearch className={styles.fullTextSearch} />
@@ -68,6 +88,7 @@ export default function Navbar() {
                 icon="pi pi-user"
                 rounded
                 raised={!!matchPath(PagePath.PROFILE, pathname)}
+                onClick={closeNavbar}
               />
             </Link>
           ) : (
@@ -76,6 +97,7 @@ export default function Navbar() {
                 label={t('login-page')!}
                 outlined
                 raised={!!matchPath(PagePath.LOGIN, pathname)}
+                onClick={closeNavbar}
               />
             </Link>
           )}

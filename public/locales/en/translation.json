@@ -207,6 +207,9 @@
       "header": "Editing review",
       "submit-button": "Save"
     },
+    "pdf": {
+      "export-button": "Export to PDF"
+    },
     "title": "Review name",
     "body": "Review",
     "grade": "Grade",
