@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useRedux';
 import { resetAuthUser, setAuthUser } from '@/redux/slices/authUserSlice';
 import { useGetProfileQuery } from '@/redux/api/authApi';
 import { useLocation } from 'react-router-dom';
+import { resetAuth } from '@/redux/slices/authSlice';
 
 export default function useAuthUser() {
   const authUser = useAppSelector((state) => state.authUser.user);
@@ -26,9 +27,10 @@ export default function useAuthUser() {
 
   useEffect(() => {
     const load = () => {
-      if (isSuccess) {
+      if (isSuccess && data) {
         dispatch(setAuthUser(data));
       } else if (authUser) {
+        dispatch(resetAuth());
         dispatch(resetAuthUser());
       }
     };

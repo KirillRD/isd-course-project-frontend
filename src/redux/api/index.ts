@@ -1,5 +1,6 @@
 import { AccessTokenResponse, ErrorResponse } from '@/redux/api/types';
 import { resetAuth, setAccessToken } from '@/redux/slices/authSlice';
+import { setAuthUser } from '@/redux/slices/authUserSlice';
 import { RootState } from '@/redux/store';
 import { ApiEndpoint, Exception } from '@/structures/enums';
 import {
@@ -91,7 +92,12 @@ const baseQueryWithReAuth: ApiBaseQueryType = async (
     } else if (message == Exception.USER_IS_LOCK) {
       api.dispatch(resetAuth());
     } else if (message == Exception.USER_ROLE_ACCESS_DENIED) {
-      window.location.reload();
+      api.dispatch(
+        setAuthUser({
+          ...(api.getState() as RootState).authUser.user!,
+          roles: [],
+        })
+      );
     }
   }
 
